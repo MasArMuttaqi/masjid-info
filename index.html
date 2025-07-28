@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -10,9 +10,15 @@
      <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&display=swap" rel="stylesheet">
-<link href="https://db.onlinewebfonts.com/c/47af01a5d6c78388f324a764da34e646?family=CastleT+Bold" rel="stylesheet">
+
+<link href="https://db.onlinewebfonts.com/c/72bbf784b7ab1eb052e63fd0fa2ec3bb?family=CastleT+V1" rel="stylesheet">
+
 <link href="https://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment-hijri@2.1.2/moment-hijri.min.js"></script>
+
 <style>
 .el-messiri-logo-fomt {
   font-family: "El Messiri", sans-serif;
@@ -61,8 +67,9 @@ min-height: 80px;
   font-size: 16px;
   margin: 0;
   color: #fff;
-  font-family: "Castle T Bold";
+  font-family: "CastleT V1";
   font-optical-sizing: auto;
+  letter-spacing: 2px;
 /*   font-weight: 600; */
 }
 
@@ -104,7 +111,7 @@ min-height: 80px;
 
 <nav class="navbar navbar-default"> 
     <div class="container-fluid"> 
-        <div class-"navbar-header">
+        <div class="navbar-header">
             <div class="flex-container logo">
 <!--           <img src="https://isi-ska.ac.id/wp-content/uploads/2021/03/isi-ver.01-600x530.png" class="example-img" /> -->
               <img src="https://lh3.googleusercontent.com/d/1YGc_N6b47ge538E-1EaIYpFaY0zuAkF3=w1000?authuser=1"/>
@@ -116,7 +123,7 @@ min-height: 80px;
         </div>
     </div> 
         
-    <div class-"nav navbar-nav navbar-right" style="margin-right: 40px;">
+    <div class="nav navbar-nav navbar-right" style="margin-right: 40px;">
     <span id="clock"></span>
     </div> 
 </div> 
@@ -135,7 +142,7 @@ min-height: 80px;
       
       <!-- jadwal sholat -->
       <div class="col-md-4 col-sm-4">
-          <span id="tanggal"></span>  
+          <span id="tanggal"></span><hr><span id="tanggal-hijriah"></span>
        <ul class="list-group list-group-flush">
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <div class="aligned">
@@ -216,17 +223,19 @@ const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
   "Juli", "Agustus", "September", "Oktober", "November", "Desember"
 ];
 
+
 $('#tanggal').html(hasil+', '+date.getDate()+' '+monthNames[monthIndex]+' '+date.getFullYear());
 </script>
+
 <script>
-function updateClock() {
+    function updateClock() {
   const now = new Date();
   const hours = now.getHours().toString().padStart(2, '0');
   const minutes = now.getMinutes().toString().padStart(2, '0');
   const seconds = now.getSeconds().toString().padStart(2, '0');
 
-  const clockDisplay = `${hours}:${minutes}:${seconds}`;
-  $('#clock').html(clockDisplay+' WIB'); 
+  const clockDisplay = `${hours}:${minutes}:${seconds}  WIB`;
+  $('#clock').html(clockDisplay); 
 }
 
 function updateClockEverySecond() {
@@ -235,6 +244,48 @@ function updateClockEverySecond() {
 }
 
 updateClockEverySecond();
+
+</script>
+<script>
+    // Set zona waktu Indonesia (WIB)
+  moment.locale('id');
+  // const tanggalHijriah = moment().utcOffset(7).format('iD iMMMM iYYYY');
+  
+  // document.write("Tanggal Hijriah (Indonesia): " + tanggalHijriah);
+
+const bulanHijriah = moment().utcOffset(7).format('iMMMM');
+// console.log(bulanHijriah);
+
+const tanggal_Hijriah = moment().utcOffset(7).format('iD');
+// console.log(tanggal_Hijriah);
+
+const tahunHijriah = moment().utcOffset(7).format('iYYYY');
+// console.log(tahunHijriah);
+
+const hijriMonthMap = {
+  'محرم': 'Muharram',
+  'صفر': 'Shafar',
+  'ربيع الأول': 'Rabiul Awal',
+  'ربيع الآخر': 'Rabiul Akhir',
+  'جمادى الأولى': 'Jumadil Awal',
+  'جمادى الآخرة': 'Jumadil Akhir',
+  'رجب': 'Rajab',
+  'شعبان': "Sya'ban",
+  'رمضان': 'Ramadhan',
+  'شوال': 'Syawwal',
+  'ذو القعدة': 'Dzulkaidah',
+  'ذو الحجة': 'Dzulhijjah'
+};
+
+// Fungsi konversi
+function convertHijriMonth(arabicMonth) {
+  return hijriMonthMap[arabicMonth] || 'Unknown month';
+}
+
+// Contoh penggunaan
+// console.log(convertHijriMonth(bulanHijriah)); // Output: Ramadhan
+
+$('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+' '+tahunHijriah); 
 
 </script>
 <script>
