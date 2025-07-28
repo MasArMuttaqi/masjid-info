@@ -103,7 +103,12 @@ min-height: 80px;
    background-color: #00a884;
    text-align: center;
 }  
-  
+  .date-card{
+     z-index: 2;
+    position: absolute;
+    top: 200px;
+    margin: 25px 50px 75px;
+}
   
 #clock{
    font-family: 'Digital-7', sans-serif;
@@ -159,10 +164,13 @@ min-height: 80px;
       <div class="col-md-4 col-sm-4">
         <div class="landing-wrapper-before">
           <p><i class="fi fi-sr-marker"></i> Kota Surakarta </p>
-          <span id="tanggal"></span>
-          <span id="tanggal-hijriah"></span>
         </div>
-        
+        <div class="card">
+            <div class="card-body date-card">
+              <span id="tanggal"></span>
+              <span id="tanggal-hijriah"></span>
+            </div>
+        </div>
        <ul class="list-group list-group-flush">
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <div class="aligned">
