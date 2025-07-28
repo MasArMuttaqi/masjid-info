@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&display=swap" rel="stylesheet">
 <link href="https://db.onlinewebfonts.com/c/47af01a5d6c78388f324a764da34e646?family=CastleT+Bold" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
-<link href="src/icon/icon.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <style>
 .el-messiri-logo-fomt {
   font-family: "El Messiri", sans-serif;
@@ -223,7 +223,8 @@ document.getElementById('tanggal').innerHTML= hasil;
   const seconds = now.getSeconds().toString().padStart(2, '0');
 
   const clockDisplay = `${hours}:${minutes}:${seconds}  WIB`;
-  document.getElementById('clock').innerText = clockDisplay;
+  //document.getElementById('clock').innerText = clockDisplay;
+  $('#clock').html(clockDisplay); 
 }
 
 function updateClockEverySecond() {
