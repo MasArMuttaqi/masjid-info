@@ -190,41 +190,43 @@ min-height: 80px;
 </div>
 
 <script>
-    function getHariPasaranJawa(tanggal = new Date()) {
-  const hariJawa = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-  const pasaran = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
+  const date = new Date();
 
-  // Tanggal dasar pasaran: 1 Januari 1900 adalah Senin Legi
-  const dasar = new Date(1900, 0, 1);
-  const selisihHari = Math.floor((tanggal - dasar) / (1000 * 60 * 60 * 24));
+  function getHariPasaranJawa(tanggal = date) {
+    const hariJawa = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const pasaran = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
 
-  const hari = hariJawa[tanggal.getDay()];
-  const pasaranIndex = selisihHari % 5;
-  const pasaranHari = pasaran[pasaranIndex < 0 ? pasaranIndex + 5 : pasaranIndex];
+    // Tanggal dasar pasaran: 1 Januari 1900 adalah Senin Legi
+    const dasar = new Date(1900, 0, 1);
+    const selisihHari = Math.floor((tanggal - dasar) / (1000 * 60 * 60 * 24));
 
-  return `${hari} ${pasaranHari}`;
-}
+    const hari = hariJawa[tanggal.getDay()];
+    const pasaranIndex = selisihHari % 5;
+    const pasaranHari = pasaran[pasaranIndex < 0 ? pasaranIndex + 5 : pasaranIndex];
+
+    return `${hari} ${pasaranHari}`;
+  }
 
 // Contoh penggunaan:
-const hasil = getHariPasaranJawa(new Date());
-document.getElementById('tanggal').innerHTML= hasil;
+const hasil = getHariPasaranJawa(date);
 
-// Untuk tanggal tertentu (misal: 17 Agustus 1945)
-// const tgl = new Date(1945, 7, 17);
-// console.log("17 Agustus 1945:", 
-//getHariPasaranJawa(tgl));
+// Menggunakan getMonth() dan array nama bulan
+const monthIndex = date.getMonth();
+const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+  "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+];
+
+$('#tanggal').html(hasil+', '+date.getDate()+' '+monthNames[monthIndex]+' '+date.getFullYear());
 </script>
-
 <script>
-    function updateClock() {
+function updateClock() {
   const now = new Date();
   const hours = now.getHours().toString().padStart(2, '0');
   const minutes = now.getMinutes().toString().padStart(2, '0');
   const seconds = now.getSeconds().toString().padStart(2, '0');
 
-  const clockDisplay = `${hours}:${minutes}:${seconds}  WIB`;
-  //document.getElementById('clock').innerText = clockDisplay;
-  $('#clock').html(clockDisplay); 
+  const clockDisplay = `${hours}:${minutes}:${seconds}`;
+  $('#clock').html(clockDisplay+' WIB'); 
 }
 
 function updateClockEverySecond() {
