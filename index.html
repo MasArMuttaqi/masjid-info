@@ -136,7 +136,7 @@ min-height: 80px;
 .banner-img {
     text-align: center;
     position: relative;
-    color: #adb8c2;
+    color: #59687f;
     font-size: 16px;
     font-weight: 700;
     height: 4px;
@@ -215,7 +215,26 @@ div.footer {
   width: 71%;
 }
 </style>
-
+<style>
+    h2.text-1xl {
+        font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        letter-spacing: 2px;
+    }
+    .prayer-time{
+        font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-size: 12pt;
+    }
+    .text-sm{
+       font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-size: 12pt;
+    }
+</style>
 
 </head>
 <body>
@@ -259,8 +278,8 @@ div.footer {
                     <div class="wrapper">
                         <div class="header">
                           <p class="location"><i class="fi fi-sr-marker"></i> Kota Surakarta</p>
-                          
-
+                          <h2 class="text-1xl" id="prayer">Maghrib</h2>
+                          <span class="text-sm" id="countdown">- 02:29:21</span>
                         </div>
 
                         <div class="banner-img">
@@ -335,11 +354,16 @@ div.footer {
       <!-- jadwal sholat -->
       
   </div>
-    <h1>Countdown Menuju Waktu Sholat Berikutnya</h1>
-  <div id="next-prayer"></div>
-  <div id="countdown"></div>
+
+
+<!-- <div id="countdown"></div> -->
   
+
+  
+
 </div>
+
+<script type="text/javascript" src="tableConvert.com_0otiu2.json"></script>
 
 <script>
   const date = new Date();
@@ -433,20 +457,15 @@ function convertHijriMonth(arabicMonth) {
 $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+' '+tahunHijriah); 
 
 </script>
+
 <script>
-    const jadwalSholat = [
-      {
-        tanggal: "2025-07-26",
-        imsak: "04:24",
-        subuh: "04:34",
-        terbit: "05:50",
-        duha: "06:20",
-        zuhur: "12:01",
-        asar: "15:18",
-        magrib: "18:08",
-        isya: "19:20"
-      }
-    ];
+
+
+    // filter data dari json
+      const targetDate = date.toISOString().slice(0, 10);
+      const jadwalSholat = datas.filter(item => item.tanggal === targetDate);
+
+      console.log(jadwalSholat);
 
     function getNextPrayerTime(jadwal) {
       const now = new Date();
@@ -480,8 +499,8 @@ $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+'
       const nextPrayer = getNextPrayerTime(jadwalSholat);
 
       if (!nextPrayer) {
-        document.getElementById("next-prayer").innerText = "Semua jadwal sholat hari ini telah berlalu.";
-        document.getElementById("countdown").innerText = "";
+        $('#prayer').html("Semua jadwal sholat hari ini telah berlalu.");
+        $('#countdown').html(" 0 jam 0 menit 0 detik");
         return;
       }
 
@@ -492,8 +511,8 @@ $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+'
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      document.getElementById("next-prayer").innerText = `Menuju waktu: ${nextPrayer.name} (${nextPrayer.time.toLocaleTimeString("id-ID")})`;
-      document.getElementById("countdown").innerText = `Sisa waktu: ${hours} jam ${minutes} menit ${seconds} detik`;
+      $('#prayer').html(nextPrayer.name+" <small class='prayer-time'>"+nextPrayer.time.toLocaleTimeString("id-ID")+" </small>");
+      $('#countdown').html("- "+hours+" jam "+minutes+" menit "+seconds+" detik");
     }
 
     setInterval(updateCountdown, 1000);
