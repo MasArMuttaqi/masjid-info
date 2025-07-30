@@ -22,6 +22,18 @@
 <script src="https://cdn.jsdelivr.net/npm/moment-hijri@2.1.2/moment-hijri.min.js"></script>
 
 <style>
+
+html {
+  zoom: 100%; /* Sets the default zoom to 100% (normal size) */
+  /* Or, for a different zoom level: */
+  /* zoom: 120%; */ /* Sets the default zoom to 120% */
+}
+
+body{
+  background-image: url(https://isi-ska.ac.id/wp-content/uploads/2021/08/background-isi.jpg);
+    background-size: cover;
+}
+
 .el-messiri-logo-fomt {
   font-family: "El Messiri", sans-serif;
   font-optical-sizing: auto;
@@ -259,7 +271,7 @@ div.footer {
 </div> 
 </nav>
 
-<div class="container-fluid mt-3">
+<div class="container-fluid">
   <div class="row">
       <!-- konten -->
       <div class="col-md-8 col-sm-8">
@@ -279,6 +291,7 @@ div.footer {
                         <div class="header">
                           <p class="location"><i class="fi fi-sr-marker"></i> Kota Surakarta</p>
                           <h2 class="text-1xl" id="prayer"></h2>
+                          <img src="https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/f333c8158561e8145bd521522cdf154889cdb6f9/src/icon/prayer-mat_7099103.png" style="display: block; margin: auto;width: 15%;" id="tidak_ada_jadwal" />
                           <span class="text-sm" id="countdown">- 02:29:21</span>
                         </div>
 
@@ -298,7 +311,7 @@ div.footer {
                             </div>
                         </div>
 
-                        <ul class="list-group list-group-flush prayer-time" id="jadwal_List"></ul>
+                        <ul class="list-group list-group-flush" id="jadwal_List"></ul>
       
 
 
@@ -460,7 +473,9 @@ $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+'
       const nextPrayer = getNextPrayerTime(jadwalSholat);
 
       if (!nextPrayer) {
-        $('#prayer').html("Semua jadwal sholat hari ini telah berlalu.");
+        // $('#prayer').html("Semua jadwal sholat hari ini telah berlalu.");
+        $("#prayer").css("display", "none");
+        $("#tidak_ada_jadwal").css("display", "block");
         $('#countdown').html(" 0 jam 0 menit 0 detik");
         return;
       }
@@ -474,6 +489,8 @@ $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+'
 
       $('#prayer').html(nextPrayer.name+" <small class='prayer-time'>"+nextPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':')+" </small>");
       $('#countdown').html("- "+hours+" jam "+minutes+" menit "+seconds+" detik");
+      $("#prayer").css("display", "block");
+      $("#tidak_ada_jadwal").css("display", "none");
     }
 
     setInterval(updateCountdown, 1000);
