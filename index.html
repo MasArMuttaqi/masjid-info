@@ -278,7 +278,7 @@ div.footer {
                     <div class="wrapper">
                         <div class="header">
                           <p class="location"><i class="fi fi-sr-marker"></i> Kota Surakarta</p>
-                          <h2 class="text-1xl" id="prayer">Maghrib</h2>
+                          <h2 class="text-1xl" id="prayer"></h2>
                           <span class="text-sm" id="countdown">- 02:29:21</span>
                         </div>
 
@@ -540,32 +540,32 @@ const schule= [
 // Mengambil teks di dalam span
 var nilai = $('#prayer').text();
 
-console.log(nilai); // Output: "Halo Dunia"
+//console.log(nilai);
 
 switch(nilai) {
   case "Imsak":
-        $('.Imsak').addClass('list-group-item-success');
+        $('.Imsak').toggleClass('list-group-item-success');
     break;
   case "Subuh":
-        $('.Subuh').toggleClass('active');
+        $('.Subuh').toggleClass('list-group-item-success');
     break;
     case "Terbit":
-        $('.Terbit').toggleClass('active');
+        $('.Terbit').toggleClass('list-group-item-success');
     break;
     case "Duha":
-        $('.Dhuha').toggleClass('active');
+        $('.Dhuha').toggleClass('list-group-item-success');
     break;
     case "Zuhur":
-        $('.Zuhur').toggleClass('active');
+        $('.Zuhur').toggleClass('list-group-item-success');
     break;
     case "Asar":
-        $('.Asar').toggleClass('active');
+        $('.Asar').toggleClass('list-group-item-success');
     break;
     case "Magrib":
-        $('.Magrib').toggleClass('active');
+        $('.Magrib').toggleClass('list-group-item-success');
     break;
     case "Isya":
-        $('.Isya').toggleClass('active');
+        $('.Isya').toggleClass('list-group-item-success');
     break;
   default:
     $('.Isya').toggleClass('');
