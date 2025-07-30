@@ -426,7 +426,7 @@ $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+'
       const targetDate = date.toISOString().slice(0, 10);
       const jadwalSholat = datas.filter(item => item.tanggal === targetDate);
 
-      console.log(jadwalSholat);
+      // console.log(jadwalSholat);
 
     function getNextPrayerTime(jadwal) {
       const now = new Date();
@@ -502,7 +502,7 @@ const schule= [
 // Mengambil teks di dalam span
 var nilai = $('#prayer').html();
 
-//console.log(nilai);
+console.log(nilai);
 
 switch(nilai) {
   case "Imsak":
