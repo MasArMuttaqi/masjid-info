@@ -298,8 +298,8 @@ div.footer {
                             </div>
                         </div>
 
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <ul class="list-group list-group-flush" id="jadwal_List">
+                        <!--  <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div class="aligned">
                               <img src="src/icon/icon-1.png" alt="icon imsak">
                               <span>Imsak</span>
@@ -336,7 +336,7 @@ div.footer {
                          <li class="list-group-item d-flex justify-content-between align-items-center">
                             <img src='src/icon/icon-8.png'> Isya
                             <span class="badge bg-primary">XX.XX</span>
-                          </li>
+                          </li> -->
                         </ul>
       
 
@@ -517,6 +517,60 @@ $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+'
 
     setInterval(updateCountdown, 1000);
     updateCountdown(); // First run
+  
+// tampilan depan jadwal sholat
+
+const waktu = jadwalSholat[0];
+
+const schule= [
+  { nama: "Imsak", waktu: waktu.imsak },
+  { nama: "Subuh", waktu: waktu.subuh },
+  { nama: "Terbit", waktu: waktu.terbit },
+  { nama: "Zuhur", waktu: waktu.zuhur },
+  { nama: "Asar", waktu: waktu.asar },
+  { nama: "Magrib", waktu: waktu.magrib },
+  { nama: "Isya", waktu: waktu.isya }
+];
+
+
+      $(schule).each(function(i,val){
+        $('#jadwal_List').append("<li class='list-group-item d-flex justify-content-between align-items-center "+val.nama+"'><div class='aligned'><img src='src/icon/icon-"+val.nama+".svg' alt='icon "+val.nama+"'/><span>"+val.nama+"</span></div><span class='badge bg-primary'>"+val.waktu+"</span></li>");
+      });
+
+// Mengambil teks di dalam span
+var nilai = $('#prayer').text();
+
+console.log(nilai); // Output: "Halo Dunia"
+
+switch(nilai) {
+  case "Imsak":
+        $('.Imsak').addClass('list-group-item-success');
+    break;
+  case "Subuh":
+        $('.Subuh').toggleClass('active');
+    break;
+    case "Terbit":
+        $('.Terbit').toggleClass('active');
+    break;
+    case "Duha":
+        $('.Dhuha').toggleClass('active');
+    break;
+    case "Zuhur":
+        $('.Zuhur').toggleClass('active');
+    break;
+    case "Asar":
+        $('.Asar').toggleClass('active');
+    break;
+    case "Magrib":
+        $('.Magrib').toggleClass('active');
+    break;
+    case "Isya":
+        $('.Isya').toggleClass('active');
+    break;
+  default:
+    $('.Isya').toggleClass('');
+}
+  
   </script>
 </body>
 </html>
