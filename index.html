@@ -57,7 +57,7 @@ body{
 }
 
 .navbar{
-min-height: 80px;
+max-height: 80px;
        /*background-image: url(https://lh3.googleusercontent.com/d/1WfaeWprBY4861R4wxt42JuwSUuV8shjI=w1000?authuser=1);*/
   background-image: url(https://lh3.googleusercontent.com/d/1UEVIQRe8Gkb1h6YIPrX-JsAWeXbw1Klz=w1000?authuser=1);
   background-size: cover;
@@ -70,10 +70,7 @@ min-height: 80px;
 
 .navbar .container-fluid .logo img {
   display: block;
-  /*max-width:50px;*/
-  max-height:54px;
-  /*width: auto;
-  height: auto;*/
+  max-height:50px;
   margin-right: 8px;
 }
 
@@ -98,7 +95,7 @@ min-height: 80px;
 
 .navbar .container-fluid .logo span {
   color: #fff;
-  font-size: 14px;
+  font-size: 12pt;
   font-weight: 300;
   padding-left: 3px;
   font-family: aksara;
@@ -118,6 +115,18 @@ min-height: 80px;
          
 .aligned span {
   padding: 10px;
+}
+
+li .badge {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 11pt;
+}
+
+li .aligned span {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 14pt;
 }
 </style>
 
@@ -246,6 +255,15 @@ div.footer {
         font-weight: 300;
         font-size: 12pt;
     }
+
+.list-group-horizontal.flex-wrap > .list-group-item {
+    flex: 0 0 50%; /* 2 items per row */
+    max-width: 48%;
+    margin: 4px;
+    border-radius: 8px;
+  }
+
+
 </style>
 
 </head>
@@ -258,9 +276,9 @@ div.footer {
 <!--           <img src="https://isi-ska.ac.id/wp-content/uploads/2021/03/isi-ver.01-600x530.png" class="example-img" /> -->
               <img src="https://lh3.googleusercontent.com/d/1YGc_N6b47ge538E-1EaIYpFaY0zuAkF3=w1000?authuser=1"/>
           <div>
-            <h2>مسجد کالي ما سادا</h2>
-            <h1 class="sitename">MASJID KALIMASADA</h1>
-            <span>ꦩꦱ꧀ꦗꦶꦣ꧀ꦏꦭꦶꦩꦱꦣ</span>
+            <h2>مسجد کالي ما سادا</h2> 
+            <h1>MASJID KALIMASADA</h1>
+            <span>ꦩꦱ꧀ꦗꦶꦣ꧀ꦏꦭꦶꦩꦱꦣ</span> 
             </div>
         </div>
     </div> 
@@ -277,7 +295,8 @@ div.footer {
       <div class="col-md-8 col-sm-8">
       
       <div class="progress" style="height:10px; border-radius: 0px;">
-<div class="progress-bar" style="width:40%;"></div></div>
+      <div class="progress-bar" style="width:40%;"></div></div>
+      <div id="container"></div>
   
       </div>
       <!-- konten -->
@@ -311,8 +330,9 @@ div.footer {
                             </div>
                         </div>
 
-                        <ul class="list-group list-group-flush" id="jadwal_List"></ul>
-      
+
+                       
+                          <ul class="list-group list-group-flush list-group-horizontal flex-wrap" id="jadwal_List"></ul>
 
 
                         <div class="footer">
@@ -513,8 +533,9 @@ const schule= [
 
 
       $(schule).each(function(i,val){
-        $('#jadwal_List').append("<li class='list-group-item d-flex justify-content-between align-items-center "+val.nama+"'><div class='aligned'><img src='src/icon/icon-"+val.nama+".svg' alt='icon "+val.nama+"'/><span>"+val.nama+"</span></div><span class='badge bg-primary'>"+val.waktu+"</span></li>");
+        $('#jadwal_List').append("<li class='list-group-item  d-flex justify-content-between align-items-center "+val.nama+"'><div class='aligned'><img src='src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/><span>"+val.nama+"</span></div><span class='badge bg-primary'>"+val.waktu+"</span></li>");
       });
+
 
 // Mengambil teks di dalam span
 var keterangan = $('.text-1xl').text();
@@ -550,7 +571,9 @@ switch(nilai) {
   default:
     $('.Subuh').toggleClass('');
 }
-  
+
   </script>
+
+
 </body>
 </html>
