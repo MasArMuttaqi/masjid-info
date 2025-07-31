@@ -517,8 +517,9 @@ const schule= [
       });
 
 // Mengambil teks di dalam span
-var nilai = $('.text-1xl').text();
-
+var keterangan = $('.text-1xl').text();
+const ArrayKeterangan = keterangan.split(" ");
+let nilai = ArrayKeterangan[1];
 alert(nilai);
 
 switch(nilai) {
