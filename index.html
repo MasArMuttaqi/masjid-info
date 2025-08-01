@@ -477,6 +477,15 @@ div.footer {
 <script>
   const date = new Date();
 
+function formatDateToYMD(Date) {
+  const year = Date.getFullYear();
+  const month = String(Date.getMonth() + 1).padStart(2, '0'); // getMonth() dimulai dari 0
+  const day = String(Date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+
     function HariPasaranJawa(tanggalInput) {
   const hariPasaran = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
   const hariMingguan = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum`at', 'Sabtu'];
@@ -512,8 +521,7 @@ function formatTanggalIndo(tanggalString) {
 // console.log(formatTanggalIndo(agenda));
 
 $('#hari-pasaran').html(HariPasaranJawa(date));
-$('#tanggal-masehi').html(formatTanggalIndo(date));
-console.log(date);
+$('#tanggal-masehi').html(formatTanggalIndo(formatDateToYMD(date)));
   </script>
 
 <script>
