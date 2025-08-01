@@ -283,6 +283,604 @@ div.footer {
       background:#fff;
       border-radius:5px;
       box-shadow:0px 2px 3px -1px rgba(151, 171, 187, 0.7);
+      /* background: rgb(240, 240, 240); */
+    }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+    }
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      /* color: #fff; */
+    }
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 5px;
+      background: linear-gradient(124deg, #d12727 56%, #7f1900 100%);
+      width: 0%;
+      transition: width linear;
+    }
+</style>
+<style>
+  .section-title h2 {
+    font-size: 18pt;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: #3a3939;
+    text-align: center;
+  }
+  .section-title h2:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 160px;
+    height: 1px;
+    background: color-mix(in srgb, #3a3939, transparent 60%);
+    left: 0;
+    right: 0;
+    bottom: 1px;
+    margin: auto;
+  }
+  .section-title h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #5d57f4;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-default"> 
+    <div class="container-fluid"> 
+        <div class="navbar-header">
+            <div class="flex-container logo">
+<!--           <img src="https://isi-ska.ac.id/wp-content/uploads/2021/03/isi-ver.01-600x530.png" class="example-img" /> -->
+              <img src="https://lh3.googleusercontent.com/d/1YGc_N6b47ge538E-1EaIYpFaY0zuAkF3=w1000?authuser=1"/>
+          <div>
+            <h2>مسجد کالي ما سادا</h2> 
+            <h1>MASJID KALIMASADA</h1>
+            <span>ꦩꦱ꧀ꦗꦶꦣ꧀ꦏꦭꦶꦩꦱꦣ</span> 
+            </div>
+        </div>
+    </div> 
+        
+    <div class="nav navbar-nav navbar-right" style="margin-right: 40px;">
+    <span id="clock"></span>
+    </div> 
+</div> 
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+      <!-- konten -->
+      <div class="col-md-8 col-sm-8" style="padding-left: 0px; padding-right: 0px;">
+      
+      <div class="carousel">
+        <div class="slides">
+          <div class="slide" data-duration="3000">
+            <div class="section-title aos-init aos-animate">
+        <h2>Maklumat Shalat Ju'mat</h2>
+        <p>_</p>
+      </div>
+
+            <p></p>
+          </div>
+          <div class="slide" data-duration="6000" style="background:#33c1ff;">Slide 2 (6s)</div>
+          <div class="slide" data-duration="4000" style="background:#28a745;">Slide 3 (4s)</div>
+        </div>
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+  
+      </div>
+      <!-- konten -->
+      
+      <!-- jadwal sholat -->
+      <div class="col-md-4 col-sm-4">
+
+
+          <div class="tile">
+                    <div class="wrapper">
+                        <div class="header">
+                          <p class="location"><i class="fi fi-sr-marker"></i> Kota Surakarta</p>
+                          <h2 class="text-1xl" id="prayer"></h2>
+                          <img src="src/icon/prayer-mat_7099103.png" style="display: block; margin: auto;width: 15%;" id="tidak_ada_jadwal" />
+                          <span class="text-sm" id="countdown">- 02:29:21</span>
+                        </div>
+
+                        <div class="banner-img">
+                             <span id="hari-pasaran" class="badge bg-light" style="color: #59687f;">Rabu Pahing</span>
+                        </div>
+
+                        <div class="dates">
+                            <div class="start">
+                                <strong>Masehi</strong>
+                                <strong id="tanggal-masehi" class="tanggal-masehi">Masehi</strong>
+                                <span></span>
+                            </div>
+                            <div class="ends">
+                                <strong>Hijriah</strong>
+                                <strong id="tanggal-hijriah" class="tanggal-masehi">Masehi</strong>
+                            </div>
+                        </div>
+
+
+                       
+                          <ul class="list-group list-group-flush list-group-horizontal flex-wrap" id="jadwal_List"></ul>
+
+
+                        <div class="footer">
+                            <p>Waktu Shalat telah ditashih oleh</p>
+                            <img src="https://lh3.googleusercontent.com/d/1YmVIJSCu6IllJ7sXCaffcJR7wSg4-3uw=w1000?authuser=1"/>
+                        </div>
+                    </div>
+                </div>
+
+       
+        
+      </div>
+      <!-- jadwal sholat -->
+      
+  </div>
+
+
+<!-- <div id="countdown"></div> -->
+  
+
+  
+
+</div>
+
+<script type="text/javascript" src="tableConvert.com_0otiu2.json"></script>
+
+<script>
+  const date = new Date();
+
+  function getHariPasaranJawa(tanggal = date) {
+    const hariJawa = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const pasaran = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
+
+    // Tanggal dasar pasaran: 1 Januari 1900 adalah Senin Legi
+    const dasar = new Date(1900, 0, 1);
+    const selisihHari = Math.floor((tanggal - dasar) / (1000 * 60 * 60 * 24));
+
+    const hari = hariJawa[tanggal.getDay()];
+    const pasaranIndex = selisihHari % 5;
+    const pasaranHari = pasaran[pasaranIndex < 0 ? pasaranIndex + 5 : pasaranIndex];
+
+    return `${hari} ${pasaranHari}`;
+  }
+
+// Contoh penggunaan:
+const hasil = getHariPasaranJawa(date);
+
+// Menggunakan getMonth() dan array nama bulan
+const monthIndex = date.getMonth();
+const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+  "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+];
+
+$('#hari-pasaran').html(hasil);
+$('#tanggal-masehi').html(date.getDate()+' '+monthNames[monthIndex]+' '+date.getFullYear());
+</script>
+
+<script>
+    function updateClock() {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+
+  const clockDisplay = `${hours}:${minutes}:${seconds}  WIB`;
+  $('#clock').html(clockDisplay); 
+}
+
+function updateClockEverySecond() {
+  updateClock();
+  setInterval(updateClock, 1000);
+}
+
+updateClockEverySecond();
+
+</script>
+<script>
+    // Set zona waktu Indonesia (WIB)
+  moment.locale('id');
+  // const tanggalHijriah = moment().utcOffset(7).format('iD iMMMM iYYYY');
+  
+  // document.write("Tanggal Hijriah (Indonesia): " + tanggalHijriah);
+
+const bulanHijriah = moment().utcOffset(7).format('iMMMM');
+// console.log(bulanHijriah);
+
+const tanggal_Hijriah = moment().utcOffset(7).format('iD');
+// console.log(tanggal_Hijriah);
+
+const tahunHijriah = moment().utcOffset(7).format('iYYYY');
+// console.log(tahunHijriah);
+
+const hijriMonthMap = {
+  'محرم': 'Muharram',
+  'صفر': 'Shafar',
+  'ربيع الأول': 'Rabiul Awal',
+  'ربيع الآخر': 'Rabiul Akhir',
+  'جمادى الأولى': 'Jumadil Awal',
+  'جمادى الآخرة': 'Jumadil Akhir',
+  'رجب': 'Rajab',
+  'شعبان': "Sya'ban",
+  'رمضان': 'Ramadhan',
+  'شوال': 'Syawwal',
+  'ذو القعدة': 'Dzulkaidah',
+  'ذو الحجة': 'Dzulhijjah'
+};
+
+// Fungsi konversi
+function convertHijriMonth(arabicMonth) {
+  return hijriMonthMap[arabicMonth] || 'Unknown month';
+}
+
+// Contoh penggunaan
+// console.log(convertHijriMonth(bulanHijriah)); // Output: Ramadhan
+
+$('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+' '+tahunHijriah); 
+
+</script>
+
+<script>
+
+
+    // filter data dari json
+      const targetDate = date.toISOString().slice(0, 10);
+      const jadwalSholat = datas.filter(item => item.tanggal === targetDate);
+
+      // console.log(jadwalSholat);
+
+    function getNextPrayerTime(jadwal) {
+      const now = new Date();
+      const today = jadwalSholat.find(j => j.tanggal === now.toISOString().slice(0, 10));
+      if (!today) return null;
+
+      const times = [
+        { name: "Imsak", time: today.imsak },
+        { name: "Subuh", time: today.subuh },
+        { name: "Terbit", time: today.terbit },
+        { name: "Duha", time: today.duha },
+        { name: "Zuhur", time: today.zuhur },
+        { name: "Asar", time: today.asar },
+        { name: "Magrib", time: today.magrib },
+        { name: "Isya", time: today.isya }
+      ];
+
+      for (let i = 0; i < times.length; i++) {
+        const [hour, minute] = times[i].time.split(":");
+        const prayerTime = new Date(now);
+        prayerTime.setHours(parseInt(hour), parseInt(minute), 0, 0);
+
+        if (now < prayerTime) {
+          return { name: times[i].name, time: prayerTime };
+        }
+      }
+      return null; // Semua waktu sholat hari ini telah berlalu
+    }
+
+    function updateCountdown() {
+      const nextPrayer = getNextPrayerTime(jadwalSholat);
+
+      if (!nextPrayer) {
+        // $('#prayer').html("Semua jadwal sholat hari ini telah berlalu.");
+        $("#prayer").css("display", "none");
+        $("#tidak_ada_jadwal").css("display", "block");
+        $('#countdown').html(" 0 jam 0 menit 0 detik");
+        return;
+      }
+
+      const now = new Date();
+      const diff = Math.max(0, nextPrayer.time - now);
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      $('#prayer').html(nextPrayer.name+" <small class='prayer-time'>"+nextPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':')+" </small>");
+      $('#countdown').html("- "+hours+" jam "+minutes+" menit "+seconds+" detik");
+      $("#prayer").css("display", "block");
+      $("#tidak_ada_jadwal").css("display", "none");
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // First run
+  
+// tampilan depan jadwal sholat
+
+const waktu = jadwalSholat[0];
+
+const schule= [
+  { nama: "Imsak", waktu: waktu.imsak },
+  { nama: "Subuh", waktu: waktu.subuh },
+  { nama: "Terbit", waktu: waktu.terbit },
+  { nama: "Dhuha", waktu: waktu.duha },
+  { nama: "Zuhur", waktu: waktu.zuhur },
+  { nama: "Asar", waktu: waktu.asar },
+  { nama: "Magrib", waktu: waktu.magrib },
+  { nama: "Isya", waktu: waktu.isya }
+];
+
+
+      $(schule).each(function(i,val){
+        $('#jadwal_List').append("<li class='list-group-item  d-flex justify-content-between align-items-center "+val.nama+"'><div class='aligned'><img src='src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/><span>"+val.nama+"</span></div><span class='badge bg-primary'>"+val.waktu+"</span></li>");
+      });
+
+
+// Mengambil teks di dalam span
+var keterangan = $('.text-1xl').text();
+const ArrayKeterangan = keterangan.split(" ");
+let nilai = ArrayKeterangan[0];
+// alert(nilai);
+
+switch(nilai) {
+  case "Imsak":
+        $('.Imsak').toggleClass('list-group-item-success');
+    break;
+  case "Subuh":
+        $('.Subuh').toggleClass('list-group-item-success');
+    break;
+    case "Terbit":
+        $('.Terbit').toggleClass('list-group-item-success');
+    break;
+    case "Duha":
+        $('.Dhuha').toggleClass('list-group-item-success');
+    break;
+    case "Zuhur":
+        $('.Zuhur').toggleClass('list-group-item-success');
+    break;
+    case "Asar":
+        $('.Asar').toggleClass('list-group-item-success');
+    break;
+    case "Magrib":
+        $('.Magrib').toggleClass('list-group-item-success');
+    break;
+    case "Isya":
+        $('.Isya').toggleClass('list-group-item-success');
+    break;
+  default:
+    $('.Subuh').toggleClass('');
+}
+
+  </script>
+
+<script>
+  const slides = document.querySelector('.slides');
+  const allSlides = document.querySelectorAll('.slide');
+  const progressBar = document.getElementById('progressBar');
+  let currentSlide = 0;
+  let timeoutId;
+
+  function showSlide(index) {
+    const slide = allSlides[index];
+    const duration = parseInt(slide.getAttribute('data-duration'), 10);
+
+    // Move to the selected slide
+    slides.style.transform = `translateX(-${index * 100}%)`;
+
+    // Reset and animate the progress bar
+    progressBar.style.transition = 'none';
+    progressBar.style.width = '0%';
+    void progressBar.offsetWidth; // force reflow
+    progressBar.style.transition = `width ${duration}ms linear`;
+    progressBar.style.width = '100%';
+
+    // Schedule the next slide
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      currentSlide = (currentSlide + 1) % allSlides.length;
+      showSlide(currentSlide);
+    }, duration);
+  }
+
+  // Start the carousel
+  showSlide(currentSlide);
+</script>
+
+
+</body>
+</html>  padding-left: 3px;
+  font-family: aksara;
+}
+
+#clock{
+   font-family: 'Digital-7', sans-serif;
+   font-size: 2em; 
+   font-weight: 600;  
+   letter-spacing: 2px; 
+   color: #fff;
+} 
+.aligned {
+   display: flex;
+   align-items: center;
+}
+         
+.aligned span {
+  padding: 10px;
+}
+
+li .badge {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 11pt;
+}
+
+li .aligned span {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 14pt;
+}
+</style>
+
+<style>
+  .tile{
+  width: 100%;
+    height: 100%;
+  background:#fff;
+  border-radius:5px;
+  box-shadow:0px 2px 3px -1px rgba(151, 171, 187, 0.7);
+  float:left;
+  transform-style: preserve-3d;
+  margin: 5px;
+
+}
+
+.header{
+  border-bottom:1px solid #ebeff2;
+  padding:19px 0;
+  text-align:center;
+  color:#59687f;
+  font-size:600;
+  font-size:19px; 
+  position:relative;
+  background-image: url(https://lh3.googleusercontent.com/d/1ZFhj6AVY8dfy70BwWlnGVyaEz7N3LZu9=w1000?authuser=1);
+  background-size: cover;
+}
+
+.banner-img {
+    text-align: center;
+    position: relative;
+    color: #59687f;
+    font-size: 16px;
+    font-weight: 700;
+    height: 4px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.location{
+  text-align: center;
+  position: relative;
+  margin: 20px 5px;
+  color: #666;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 11pt;
+}
+
+.location i{
+  color: #0dcaf0;
+}
+
+.dates{
+  border:1px solid #ebeff2;
+  border-radius:5px;
+  padding:20px 0px;
+  margin:10px 20px;
+  font-size:16px;
+  color:#5aadef;
+  font-weight:600;  
+  overflow:auto;
+}
+.dates div{
+  float:left;
+  width:50%;
+  text-align:center;
+  position:relative;
+}
+.dates strong,
+.stats strong{
+  font-family: "Roboto", sans-serif;
+  display:block;
+  color:#adb8c2;
+  font-size:11px;
+  font-weight:700;
+}
+
+strong.tanggal-masehi{
+    font-family: "Roboto", sans-serif;
+    display: block;
+    font-size: 16px;
+    color: #5aadef;
+    font-weight: 600;
+}
+
+.dates span{
+  width:1px;
+  height:40px;
+  position:absolute;
+  right:0;
+  top:0;  
+  background:#ebeff2;
+}
+
+
+div.footer {
+  text-align: center;
+  position: relative;
+  margin: 20px 5px;
+  color: #666;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: ExtraLight;
+}
+.footer img{
+  width: 71%;
+}
+</style>
+<style>
+    h2.text-1xl {
+        font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        letter-spacing: 2px;
+    }
+    .prayer-time{
+        font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-size: 12pt;
+    }
+    .text-sm{
+       font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-size: 12pt;
+    }
+
+.list-group-horizontal.flex-wrap > .list-group-item {
+    flex: 0 0 50%; /* 2 items per row */
+    max-width: 48%;
+    margin: 4px;
+    border-radius: 8px;
+  }
+
+
+</style>
+<style>
+  .carousel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      /*margin: 40px auto;*/
+      margin: 5px;
+      overflow: hidden;
+      /*border: 2px solid #444;*/
+      background:#fff;
+      border-radius:5px;
+      box-shadow:0px 2px 3px -1px rgba(151, 171, 187, 0.7);
     }
     .slides {
       display: flex;
