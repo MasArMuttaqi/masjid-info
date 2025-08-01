@@ -477,33 +477,44 @@ div.footer {
 <script>
   const date = new Date();
 
-  function getHariPasaranJawa(tanggal = date) {
-    const hariJawa = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-    const pasaran = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
+    function HariPasaranJawa(tanggalInput) {
+  const hariPasaran = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
+  const hariMingguan = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum`at', 'Sabtu'];
 
-    // Tanggal dasar pasaran: 1 Januari 1900 adalah Senin Legi
-    const dasar = new Date(1900, 0, 1);
-    const selisihHari = Math.floor((tanggal - dasar) / (1000 * 60 * 60 * 24));
+  // Konversi ke format Date
+  const tanggal = new Date(tanggalInput);
 
-    const hari = hariJawa[tanggal.getDay()];
-    const pasaranIndex = selisihHari % 5;
-    const pasaranHari = pasaran[pasaranIndex < 0 ? pasaranIndex + 5 : pasaranIndex];
+  // Hari dalam seminggu
+  const hari = hariMingguan[tanggal.getDay()];
 
-    return `${hari} ${pasaranHari}`;
-  }
+  // Hitung selisih hari dari acuan (1 Januari 1900 adalah Legi)
+  const acuan = new Date('1900-01-01');
+  const selisihHari = Math.floor((tanggal - acuan) / (1000 * 60 * 60 * 24));
+  const pasaran = hariPasaran[selisihHari % 5];
 
-// Contoh penggunaan:
-const hasil = getHariPasaranJawa(date);
+  return `${hari} ${pasaran}`;
+} 
 
-// Menggunakan getMonth() dan array nama bulan
-const monthIndex = date.getMonth();
-const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
-  "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-];
+// console.log(HariPasaranJawa(agenda));
 
-$('#hari-pasaran').html(hasil);
-$('#tanggal-masehi').html(date.getDate()+' '+monthNames[monthIndex]+' '+date.getFullYear());
-</script>
+function formatTanggalIndo(tanggalString) {
+  const bulanIndo = [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+  ];
+
+  const [tahun, bulan, tanggal] = tanggalString.split('-');
+  const namaBulan = bulanIndo[parseInt(bulan) - 1];
+  
+  return `${parseInt(tanggal)} ${namaBulan} ${tahun}`;
+}
+
+// console.log(formatTanggalIndo(agenda));
+
+$('#hari-pasaran').html(HariPasaranJawa(date));
+$('#tanggal-masehi').html(formatTanggalIndo(date));
+
+  </script>
 
 <script>
     function updateClock() {
