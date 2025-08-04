@@ -289,7 +289,7 @@ div.footer {
     .slide {
       min-width: 100%;
       height: 100%;
-      display: flex;
+      /*display: flex;*/
       justify-content: center;
       /* align-items: center; */
       padding-top: 19px;
@@ -369,17 +369,18 @@ div.footer {
 
 /*Profile card 2*/
 .profile-card-2 .card-img-block {
- display: flex;
+  display: flex;
   align-items: center; /* Vertically centers content */
   justify-content: center;
    background-image: url(https://lh3.googleusercontent.com/d/1q-yMktrhKH-nYKfpiemTWv84dJuhp_rm=w1000?authuser=1);
   background-size: cover;
   background-position: 50% 50%;
-   /* float: left; */
-   width: 100%;
-   height: 100px;
-   overflow: hidden;
-   color: #fff;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
 }
 
 .profile-card-2 .card-body {
@@ -401,39 +402,36 @@ div.footer {
 .profile-card-2 h5 {
    font-weight: 600;
    color: #006da0;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
 }
 
 .profile-card-2 .card-text {
    font-weight: 300;
    font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
 }
 
-.profile-card-2 .icon-block {
-   float: left;
-   width: 100%;
+.blockquote-custom {
+  position: relative;
+  font-size: 1.1rem;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
 }
 
-.profile-card-2 .icon-block a {
-   text-decoration: none;
+.blockquote-custom-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -40px;
+  left: 19px;
 }
 
-.profile-card-2 i {
-   display: inline-block;
-   font-size: 16px;
-   color: #006da0;
-   text-align: center;
-   border: 1px solid #006da0;
-   width: 30px;
-   height: 30px;
-   line-height: 30px;
-   border-radius: 50%;
-   margin: 0 5px;
-}
-
-.profile-card-2 i:hover {
-   background-color: #006da0;
-   color: #fff;
-}
 </style>
 </head>
 <body>
@@ -468,12 +466,13 @@ div.footer {
       <div class="carousel">
         <div class="slides">
           <div class="slide" data-duration="10000">
-            <div class="section-title">
-            <h2>Maklumat Shalat Jum'at <br> <span class="badge rounded-pill bg-success">Jum'at Pahing, 8 Agustus 2025 / 14 Safar 1446</span></h2>
-            <!-- <p class="location">tanggal <span id="tanggal-sholat-jumat">1 Agustus 2025</span></p> -->
-            </div>
 
-            <div class="row">
+              <div class="section-title">
+              <h2>Maklumat Shalat Jum'at <br> <span class="badge rounded-pill bg-success">Jum'at Pahing, 8 Agustus 2025 / 14 Safar 1446</span></h2>
+              <!-- <p class="location">tanggal <span id="tanggal-sholat-jumat">1 Agustus 2025</span></p> -->
+              </div>
+       
+            <div class="row" style="margin: 15px;">
               <div class="col-md-6">
                 <div class="card profile-card-2">
                <div class="card-img-block">
@@ -499,6 +498,29 @@ div.footer {
                 </div> 
               </div> <!-- col 6 -->
             </div> <!-- row -->
+                <div class="row">
+                <div class="col-md-12">
+                  <div class="card"  style="margin: 15px;">
+                    <div class="card-body">
+                      <blockquote class="blockquote blockquote-custom bg-white px-3 pt-4">
+                        <div class="blockquote-custom-icon bg-info shadow-1-strong">
+                          <i class="fa fa-quote-left text-white"></i>
+                        </div>
+                        <p class="mb-0 mt-2 font-italic">
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                          <a href="#" class="text-info">@consequat</a>."
+                        </p>
+                        <footer class="blockquote-footer pt-4 mt-4 border-top">
+                          Tema Khutbah Jum'at
+                        </footer>
+                      </blockquote>
+                    </div>
+                  </div>
+
+                </div>
+                </div>
             
           </div>
           <div class="slide" data-duration="10000">
