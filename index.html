@@ -470,7 +470,37 @@ div.footer {
   background-position: center;
 }
 </style>
+<style>
+.agenda {
+}
 
+/* Dates */
+.agenda .agenda-date {
+  width: 170px;
+}
+.agenda .agenda-date .dayofmonth {
+  width: 40px;
+  font-size: 36px;
+  line-height: 36px;
+  float: left;
+  text-align: right;
+  margin-right: 10px;
+}
+.agenda .agenda-date .shortdate {
+  font-size: 0.75em;
+}
+
+/* Times */
+.agenda .agenda-time {
+  width: 160px;
+}
+
+/* Events */
+.agenda .agenda-events {
+}
+.agenda .agenda-events .agenda-event {
+}
+</style>
 </head>
 <body>
 
@@ -571,8 +601,81 @@ div.footer {
             <div class="section-title">
              <h2>Agenda Pengajian</h2>
             </div>
-             
-  
+             <!-- Tabel -->
+            <div class="row">
+               <div class="agenda">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered rounded-table">
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jam</th>
+            <th>Agenda</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Single event in a single day -->
+          <tr>
+            <td class="agenda-date" class="active" rowspan="1">
+              <div class="dayofmonth">26</div>
+              <div class="dayofweek">Saturday</div>
+              <div class="shortdate text-muted">July, 2014</div>
+            </td>
+            <td class="agenda-time">
+              5:30 AM
+            </td>
+            <td class="agenda-events">
+              <div class="agenda-event">
+                <i class="fi fi-tr-catalog-magazine"></i>
+                ihya U`lumuddin
+                <br>
+                <i class="fi fi-tr-skill-user"></i>
+                KH. Dr. Fahruddin Faiz, M.Ag
+              </div>
+            </td>
+          </tr>
+
+          <!-- Multiple events in a single day (note the rowspan) -->
+          <tr>
+            <td class="agenda-date" class="active" rowspan="3">
+              <div class="dayofmonth">4</div>
+              <div class="dayofweek">Thursday</div>
+              <div class="shortdate text-muted">July, 2014</div>
+            </td>
+            <td class="agenda-time">
+              8:00 - 9:00 AM
+            </td>
+            <td class="agenda-events">
+              <div class="agenda-event">
+                Doctor's Appointment
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="agenda-time">
+              10:15 AM - 12:00 PM
+            </td>
+            <td class="agenda-events">
+              <div class="agenda-event">
+                Meeting with executives
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="agenda-time">
+              7:00 - 9:00 PM
+            </td>
+            <td class="agenda-events">
+              <div class="agenda-event">
+                Aria's dance recital
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> </div>
+            </div> 
+            <!-- Tabel -->
             
             
           </div>
