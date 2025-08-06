@@ -481,7 +481,6 @@ div.footer {
     overflow: hidden;
     overflow-y: hidden;
     font-family: "Roboto", sans-serif;
-    font-size: 11pt;
   }
 
   .rounded-table th, .rounded-table td {
@@ -499,6 +498,7 @@ div.footer {
     background-position: center right; */
     background-color: #008069;
     color: white;
+    font-size: 16pt;
   }
   i{
     vertical-align: middle;
