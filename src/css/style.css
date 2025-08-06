@@ -440,7 +440,7 @@ div.footer {
 }
 
 .agenda .agenda-date {
-  width: 170px;
+  width: 250px;
 }
 .agenda .agenda-date .dayofmonth {
   width: 50px;
@@ -481,7 +481,7 @@ div.footer {
     overflow: hidden;
     overflow-y: hidden;
     font-family: "Roboto", sans-serif;
-    font-size: 16pt;
+    font-size: 14pt;
   }
 
   .rounded-table th, .rounded-table td {
