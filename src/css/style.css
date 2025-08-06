@@ -481,6 +481,7 @@ div.footer {
     overflow: hidden;
     overflow-y: hidden;
     font-family: "Roboto", sans-serif;
+    font-size: 16pt;
   }
 
   .rounded-table th, .rounded-table td {
