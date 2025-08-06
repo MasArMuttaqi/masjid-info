@@ -436,6 +436,7 @@ div.footer {
 .agenda {
   margin: 20px;
   width: -webkit-fill-available;
+  font-family: "Roboto", sans-serif;
 }
 
 .agenda .agenda-date {
@@ -443,14 +444,14 @@ div.footer {
 }
 .agenda .agenda-date .dayofmonth {
   width: 40px;
-  font-size: 36px;
+  font-size: 36pt;
   line-height: 36px;
   float: left;
   text-align: right;
   margin-right: 10px;
 }
 .agenda .agenda-date .shortdate {
-  font-size: 0.75em;
+  font-size: 24pt;
 }
 
 .agenda .agenda-time {
