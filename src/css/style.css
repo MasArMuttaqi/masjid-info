@@ -12,7 +12,7 @@ body{
 
 @font-face {
   font-family: aksara;
-  src: url("src/font/nyk Ngayogyan New Italic.ttf");
+  src: url("../font/nyk Ngayogyan New Italic.ttf");
 }
 
 .flex-container {
