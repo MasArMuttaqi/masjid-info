@@ -357,11 +357,7 @@ $('#tanggal-masehi').html(formatTanggalIndo(formatDateToYMD(date)));
 }
 
 // Contoh penggunaan:
-console.log(konversiHijriah(formatDateToYMD(date))); // Output: contoh "10 Safar 1447 H"
-
-// test tanggal maklumat solat jumat id="tgl_sholatJumat"
-var SholatJumat = "2025-08-08";
-$('#tgl_sholatJumat').html(HariPasaranJawa(SholatJumat)+" , "+formatTanggalIndo(SholatJumat)+" / "+konversiHijriah(SholatJumat));
+//console.log(konversiHijriah(formatDateToYMD(date))); // Output: contoh "10 Safar 1447 H"
 </script>
 
 
@@ -599,6 +595,10 @@ function getFridayDate() {
 
 //console.log(getFridayDate());
 var JumatIni = getFridayDate();
+// test tanggal maklumat solat jumat id="tgl_sholatJumat"
+// var SholatJumat = "2025-08-08";
+$('#tgl_sholatJumat').html(HariPasaranJawa(JumatIni)+" , "+formatTanggalIndo(JumatIni)+" / "+konversiHijriah(JumatIni));
+
 </script>
 
 </body>
