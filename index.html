@@ -579,7 +579,24 @@ switch(nilai) {
   // Start the carousel
   showSlide(currentSlide);
 </script>
+<script>
+function getFridayDate() {
+  const today = new Date();
+  const dayOfWeek = today.getDay(); // 0 (Sun) to 6 (Sat)
+  const diffToFriday = 5 - dayOfWeek; // 5 is Friday
+  const friday = new Date(today);
+  friday.setDate(today.getDate() + diffToFriday);
+  
+  // Format to YYYY-MM-DD
+  const yyyy = friday.getFullYear();
+  const mm = String(friday.getMonth() + 1).padStart(2, '0');
+  const dd = String(friday.getDate()).padStart(2, '0');
+  
+  return `${yyyy}-${mm}-${dd}`;
+}
 
+console.log(getFridayDate());
+</script>
 
 </body>
 </html>
