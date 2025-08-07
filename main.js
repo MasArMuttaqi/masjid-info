@@ -285,8 +285,8 @@ if (!Array.isArray(filteredData) || filteredData.length === 0) {
     } else { 
         $("#MaklumatSholatJumat").css("display", "block");
     }
-var opd = "";
-$(filteredData).each(function(i,k){
+    var opd = "";
+    $(filteredData).each(function(i,k){
       if (k.khotib == k.imam) {
         opd += "<div class='row' style='margin: 15px;'><div class='col-md-12'><div class='card profile-card-2'><div class='card-img-block'><h4>Imam dan Khatib</h4></div><div class='card-body pt-5'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIwoYUmRwwk60oQVwIEFkoOn5iQZ1jNYkMh80kZ5KkIauzp7E-4kCAkvw&s=10' alt='profile-image' class='profile' style='left:7%' /><h5 class='card-title'>"+k.imam+"</h5><p class='card-text'>"+k.profil_imam+"</p></div></div></div></div>";
       }else{
@@ -297,3 +297,31 @@ $(filteredData).each(function(i,k){
       $('#MaklumatSholatJumat').html(opd);
     });
 // mengambil jadwal imam dan khotib sholat jumat
+
+
+
+// Grouping berdasarkan kategori
+  const grouped = {};
+  $.each(agenda, function(_, item) {
+    if (!grouped[item.tanggal]) {
+      grouped[item.tanggal] = [];
+    }
+    grouped[item.tanggal].push(item);
+  });
+ 
+  // Buat tabel dengan rowspan
+  const tbody = $('#agenda-pengajian tbody');
+  $.each(grouped, function(tanggal, items) {
+    const rowspan = items.length;
+    $.each(items, function(index, item) {
+      var anotherString = formatTanggalIndo(tanggal);
+      var cleanedWords = anotherString.split(/\s+/);
+      const row = $('<tr>');
+      if (index === 0) {
+        row.append('<td rowspan="' + rowspan + '" class="agenda-date" class="active"><div class="dayofmonth">'+cleanedWords[0]+'</div><div class="dayofweek">'+HariPasaranJawa(tanggal)+'</div><div class="shortdate text-muted">'+cleanedWords[1]+' '+cleanedWords[2]+'</div></td>');
+      }
+      row.append('<td class="agenda-time">' + item.jam + '</td>');
+      row.append('<td class="agenda-events"><div class="agenda-event"><i class="fi fi-tr-catalog-magazine"></i> ' + item.materi + '<br><i class="fi fi-tr-skill-user"></i>' + item.pemateri+ '</div></td>');
+      tbody.append(row);
+    });
+  });
