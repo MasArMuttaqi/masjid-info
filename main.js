@@ -299,15 +299,9 @@ if (!Array.isArray(filteredData) || filteredData.length === 0) {
 // mengambil jadwal imam dan khotib sholat jumat
 
 
-const targetDate = new Date(formatDateToYMD(date));
-
-const filtered = data.filter(item => new Date(item.date) > targetDate);
-
-//console.log(filtered);
-
 // Grouping berdasarkan kategori
   const grouped = {};
-  $.each(filtered, function(_, item) {
+  $.each(agenda, function(_, item) {
     if (!grouped[item.tanggal]) {
       grouped[item.tanggal] = [];
     }
