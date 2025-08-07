@@ -297,11 +297,17 @@ if (!Array.isArray(filteredData) || filteredData.length === 0) {
       $('#MaklumatSholatJumat').html(opd);
     });
 // mengambil jadwal imam dan khotib sholat jumat
+const filterTanggal = formatDateToYMD(date);
 
+const targetDate1 = new Date(filterTanggal);
+
+const filtered2 = agenda.filter(item => new Date(item.tanggal) < targetDate1);
+
+//console.log(filtered);
 
 // Grouping berdasarkan kategori
   const grouped = {};
-  $.each(agenda, function(_, item) {
+  $.each(filtered2, function(_, item) {
     if (!grouped[item.tanggal]) {
       grouped[item.tanggal] = [];
     }
