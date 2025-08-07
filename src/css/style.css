@@ -493,14 +493,14 @@ div.footer {
     border-radius: 10px;
     overflow: hidden;
     overflow-y: hidden;
+    font-weight: 300;
+    font-size: 16pt;
     font-family: "Roboto", sans-serif;
-    font-size: 14pt;
   }
 
   .rounded-table th, .rounded-table td {
     padding: 10px;
     text-align: left;
-    font-size: 16pt;
     font-weight: 400;
     border-bottom: 1px solid #ddd;
   }
