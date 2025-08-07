@@ -1,5 +1,5 @@
 html {
-  zoom: 100%; /* Sets the default zoom to 100% (normal size) */
+  zoom: 80%; /* Sets the default zoom to 100% (normal size) */
   /* Or, for a different zoom level: */
   /* zoom: 120%; */ /* Sets the default zoom to 120% */
 }
@@ -301,7 +301,7 @@ div.footer {
 /* judul informasi */
   .section-title h2 {
     font-family: "Roboto", sans-serif;
-    font-size: 18pt;
+    font-size: 22pt;
     font-weight: 700;
     margin-bottom: 20px;
     padding-bottom: 20px;
@@ -397,22 +397,29 @@ div.footer {
 }
 
 .profile-card-2 h5 {
-   font-weight: 600;
-   color: #006da0;
+  font-weight: 600;
+  color: #006da0;
   font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
+  font-size: 22pt;
 }
 
 .profile-card-2 .card-text {
    font-weight: 300;
-   font-size: 15px;
+   font-size: 15pt;
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
 }
 
 .blockquote-custom {
   position: relative;
-  font-size: 1.1rem;
+  font-size: 15pt;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.blockquote-custom .card-text {
+   font-weight: 300;
+   font-size: 18pt;
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
 }
@@ -432,6 +439,12 @@ div.footer {
   background-size: cover;
   background-position: center;
 }
+
+.blockquote-footer{
+  font-weight: 400;
+   font-size: 15pt;
+  font-family: "Roboto", sans-serif;
+}
 /* maklumat sholat jumat */
 .agenda {
   margin: 20px;
@@ -446,19 +459,19 @@ div.footer {
   width: 50px;
   font-weight: 400;
   font-size: 36pt;
-  line-height: 36px;
+  line-height: 64px;
   float: left;
   text-align: right;
   margin-right: 10px;
 }
 .agenda .agenda-date .shortdate {
   font-size: 14pt;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .agenda .agenda-date .dayofweek {
   font-size: 16pt;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .agenda .agenda-time {
@@ -494,9 +507,6 @@ div.footer {
     border-bottom: none;
   }
   .rounded-table th{
-/*     background-image: url("https://lh3.googleusercontent.com/d/1FjUIe27xUaRni4e1vrb-ESk_hbLFUwj9=w1000?authuser=1");
-    background-size: cover;
-    background-position: center right; */
     background-color: #008069;
     color: white;
     font-size: 16pt;
@@ -506,3 +516,16 @@ div.footer {
     margin-right: 5px;
   }
 /* tabel agenda pengajian rutin */
+
+/* info data kosong */
+.info-data-kosong{
+  margin: 30px;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+.info-data-kosong .card-body img{
+  width: 70px;
+}
+/* info data kosong */
