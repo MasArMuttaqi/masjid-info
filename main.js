@@ -301,7 +301,7 @@ const filterTanggal = formatDateToYMD(date);
 
 const targetDate1 = new Date(filterTanggal);
 
-const filtered2 = agenda.filter(item => new Date(item.tanggal) < targetDate1);
+const filtered2 = agenda.filter(item => new Date(item.tanggal) > targetDate1);
 
 //console.log(filtered);
 
