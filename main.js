@@ -320,7 +320,7 @@ $(filteredData).each(function(i,k){
         row.append('<td rowspan="' + rowspan + '">' + item.tanggal + '</td>');
       }
       row.append('<td>' + item.jam + '</td>');
-      row.append('<td>' + item.materi +'<br>'+ item.pemateri '</td>');
+      row.append('<td>' + item.materi +'<br>'+ item.pemateri +'</td>');
       tbody.append(row);
     });
   });
