@@ -303,7 +303,7 @@ $(filteredData).each(function(i,k){
 // agenda pengajian
 // Grouping berdasarkan tanggal
   const grouped = {};
-  $.each(data, function(_, item) {
+  $.each(agenda, function(_, item) {
     if (!groupeditem.tanggal]) {
       grouped[item.tanggal] = [];
     }
