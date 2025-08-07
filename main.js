@@ -323,7 +323,7 @@ const filtered2 = agenda.filter(item => new Date(item.tanggal) > targetDate1);
       var cleanedWords = anotherString.split(/\s+/);
       const row = $('<tr>');
       if (index === 0) {
-        row.append('<td rowspan="' + rowspan + '" class="agenda-date" class="active"><div class="dayofmonth">'+cleanedWords[0]+'</div><div class="dayofweek">'+HariPasaranJawa(tanggal)+'</div><div class="shortdate text-muted">'+cleanedWords[1]+' '+cleanedWords[2]+'</div></td>');
+        row.append('<td rowspan="' + rowspan + '" class="agenda-date"><div class="dayofmonth">'+cleanedWords[0]+'</div><div class="dayofweek">'+HariPasaranJawa(tanggal)+'</div><div class="shortdate text-muted">'+cleanedWords[1]+' '+cleanedWords[2]+'</div></td>');
       }
       row.append('<td class="agenda-time">' + item.jam + '</td>');
       row.append('<td class="agenda-events"><div class="agenda-event"><i class="fi fi-tr-catalog-magazine"></i> ' + item.materi + '<br><i class="fi fi-tr-skill-user"></i>' + item.pemateri+ '</div></td>');
