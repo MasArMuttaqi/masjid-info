@@ -299,3 +299,28 @@ $(filteredData).each(function(i,k){
       $('#MaklumatSholatJumat').html(opd);
     });
 // mengambil jadwal imam dan khotib sholat jumat
+
+// agenda pengajian
+// Grouping berdasarkan tanggal
+  const grouped = {};
+  $.each(data, function(_, item) {
+    if (!groupeditem.tanggal]) {
+      grouped[item.tanggal] = [];
+    }
+    groupeditem.tanggal].push(item);
+  });
+
+  // Buat tabel dengan rowspan
+  const tbody = $('#agenda tbody');
+  $.each(grouped, function(kategori, items) {
+    const rowspan = items.length;
+    $.each(items, function(index, item) {
+      const row = $('<tr>');
+      if (index === 0) {
+        row.append('<td rowspan="' + rowspan + '">' + item.tanggal + '</td>');
+      }
+      row.append('<td>' + item.jam + '</td>');
+      row.append('<td>' + item.materi +'<br>'+ item.pemateri '</td>');
+      tbody.append(row);
+    });
+  });
