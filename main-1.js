@@ -164,7 +164,6 @@ function updateCountdown() {
     const now = new Date();
     const currentPrayer = getCurrentPrayerTime();
     const iqomahMinutes = parseInt($("#iqomah_minutes").val()) || 0;
-
     if (currentPrayer) {
         const iqomahEnd = new Date(currentPrayer.time.getTime() + iqomahMinutes * 60000);
 
@@ -175,9 +174,9 @@ function updateCountdown() {
             const minutes = Math.floor(diff / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            $("#Nextprayer").html("Iqomah untuk " + currentPrayer.name);
-            $("#countdown").html(minutes + " menit " + seconds + " detik");
-            $("#prayer").show();
+            $("#Nextprayer").html(currentPrayer.name + " <small class='prayer-time'>" + currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + "</small>");
+            $("#countdown").html("Iqomah dalam waktu : "+minutes + " menit " + seconds + " detik");
+           // $("#prayer").show();
             $("#tidak_ada_jadwal").hide();
             return;
         } else if (iqomahActive) {
@@ -206,12 +205,37 @@ function updateCountdown() {
         nextPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + 
         "</small>");
     $('#countdown').html("- " + hours + " jam " + minutes + " menit " + seconds + " detik");
-    $("#prayer").show();
+   // $("#prayer").show();
     $("#tidak_ada_jadwal").hide();
 }
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+// tampilan depan jadwal sholat
+const waktu = jadwalSholat[0];
+const schule= [
+  { nama: "Imsak", waktu: waktu.imsak },
+  { nama: "Subuh", waktu: waktu.subuh },
+  { nama: "Terbit", waktu: waktu.terbit },
+  { nama: "Dhuha", waktu: waktu.duha },
+  { nama: "Zuhur", waktu: waktu.zuhur },
+  { nama: "Asar", waktu: waktu.asar },
+  { nama: "Magrib", waktu: waktu.magrib },
+  { nama: "Isya", waktu: waktu.isya }
+];
+$(schule).each(function(i,val){
+  $('#jadwal_List').append("<li class='list-group-item  d-flex justify-content-between align-items-center "+val.nama+"'><div class='aligned'><img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/cdfb2e5b36b2a123cd6240abd127e5e852825d7b/src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/><span>"+val.nama+"</span></div><span class='badge bg-primary'>"+val.waktu+"</span></li>");
+});
+
+// Mengambil teks di dalam span
+var keterangan = $('.text-1xl').text();
+const ArrayKeterangan = keterangan.split(" ");
+let nilai = ArrayKeterangan[0];
+// alert(nilai);
+
+$("#JedaIqomah").html("jeda iqomah "+nilai); 
+
   
 // tampilan depan jadwal sholat
 const waktu = jadwalSholat[0];
