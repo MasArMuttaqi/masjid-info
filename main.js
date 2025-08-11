@@ -233,6 +233,7 @@ var keterangan = $('.text-1xl').text();
 const ArrayKeterangan = keterangan.split(" ");
 let nilai = ArrayKeterangan[0];
 // alert(nilai);
+$("#JedaIqomah").html("jeda iqomah "+nilai); 
 
 switch(nilai) {
   case "Imsak":
