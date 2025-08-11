@@ -159,7 +159,7 @@ function updateCountdown() {
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      $('#prayer').html(nextPrayer.name+" <small class='prayer-time'>"+nextPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':')+" </small>");
+      $('#Nextprayer').html(nextPrayer.name+" <small class='prayer-time'>"+nextPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':')+" </small>");
       $('#countdown').html("- "+hours+" jam "+minutes+" menit "+seconds+" detik");
       $("#prayer").css("display", "block");
       $("#tidak_ada_jadwal").css("display", "none");
