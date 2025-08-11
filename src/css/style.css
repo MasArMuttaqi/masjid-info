@@ -198,11 +198,11 @@ li .aligned span {
 }
 .dates strong,
 .stats strong{
-  font-family: "Roboto", sans-serif;
-  display:block;
-  color:#adb8c2;
-  font-size:11px;
-  font-weight:700;
+ font-family: "Roboto", sans-serif;
+    display: block;
+    color: #343a40;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 strong.tanggal-masehi{
