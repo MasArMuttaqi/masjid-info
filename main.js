@@ -114,12 +114,17 @@ $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+'
 // filter data dari json
 const targetDate = date.toISOString().slice(0, 10);
 const jadwalSholat = datas.filter(item => item.tanggal === targetDate);
-function getNextPrayerTime(jadwal) {
-      const now = new Date();
-      const today = jadwalSholat.find(j => j.tanggal === now.toISOString().slice(0, 10));
-      if (!today) return null;
+// Audio element untuk akhir iqomah
+const audioEndIqomah = new Audio("end-iqomah.mp3");
 
-      const times = [
+let iqomahActive = false; // status apakah sedang dalam iqomah
+
+function getPrayerTimes() {
+    const now = new Date();
+    const today = jadwalSholat.find(j => j.tanggal === now.toISOString().slice(0, 10));
+    if (!today) return [];
+
+    return [
         { name: "Imsak", time: today.imsak },
         { name: "Subuh", time: today.subuh },
         { name: "Terbit", time: today.terbit },
@@ -128,45 +133,83 @@ function getNextPrayerTime(jadwal) {
         { name: "Asar", time: today.asar },
         { name: "Magrib", time: today.magrib },
         { name: "Isya", time: today.isya }
-      ];
+    ].map(p => {
+        const [h, m] = p.time.split(":");
+        const d = new Date(now);
+        d.setHours(parseInt(h), parseInt(m), 0, 0);
+        return { name: p.name, time: d };
+    });
+}
 
-    for (let i = 0; i < times.length; i++) {
-      const [hour, minute] = times[i].time.split(":");
-      const prayerTime = new Date(now);
-      prayerTime.setHours(parseInt(hour), parseInt(minute), 0, 0);
-      if (now < prayerTime) {
-        return { name: times[i].name, time: prayerTime };
-      }
+function getCurrentPrayerTime() {
+    const now = new Date();
+    const prayers = getPrayerTimes();
+
+    for (let i = prayers.length - 1; i >= 0; i--) {
+        if (now >= prayers[i].time) {
+            return prayers[i];
+        }
     }
-  return null; // Semua waktu sholat hari ini telah berlalu
+    return null;
+}
+
+function getNextPrayerTime() {
+    const now = new Date();
+    const prayers = getPrayerTimes();
+    return prayers.find(p => now < p.time) || null;
 }
 
 function updateCountdown() {
-      const nextPrayer = getNextPrayerTime(jadwalSholat);
+    const now = new Date();
+    const currentPrayer = getCurrentPrayerTime();
+    const iqomahMinutes = parseInt($("#iqomah_minutes").val()) || 0;
+    if (currentPrayer) {
+        const iqomahEnd = new Date(currentPrayer.time.getTime() + iqomahMinutes * 60000);
 
-      if (!nextPrayer) {
-        // $('#Nextprayer').html("Semua jadwal sholat hari ini telah berlalu.");
-        $("#Nextprayer").css("display", "none");
-        $("#tidak_ada_jadwal").css("display", "block");
-        $('#countdown').html(" 0 jam 0 menit 0 detik");
+        if (now < iqomahEnd) {
+            // Masih dalam waktu iqomah
+            iqomahActive = true; // set status aktif
+            const diff = iqomahEnd - now;
+            const minutes = Math.floor(diff / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            $("#Nextprayer").html(currentPrayer.name + " <small class='prayer-time'>" + currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + "</small>");
+            $("#countdown").html("Iqomah dalam waktu : "+minutes + " menit " + seconds + " detik");
+           // $("#prayer").show();
+            $("#tidak_ada_jadwal").hide();
+            return;
+        } else if (iqomahActive) {
+            // Iqomah baru saja selesai
+            audioEndIqomah.play();
+            iqomahActive = false;
+        }
+    }
+
+    // Countdown menuju sholat berikutnya
+    const nextPrayer = getNextPrayerTime();
+    if (!nextPrayer) {
+        $("#Nextprayer").hide();
+        $("#tidak_ada_jadwal").show();
+        $("#countdown").html("0 jam 0 menit 0 detik");
         return;
-      }
+    }
 
-      const now = new Date();
-      const diff = Math.max(0, nextPrayer.time - now);
+    const diff = nextPrayer.time - now;
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      $('#Nextprayer').html(nextPrayer.name+" <small class='prayer-time'>"+nextPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':')+" </small>");
-      $('#countdown').html("- "+hours+" jam "+minutes+" menit "+seconds+" detik");
-      $("#prayer").css("display", "block");
-      $("#tidak_ada_jadwal").css("display", "none");
+    $('#Nextprayer').html(nextPrayer.name + 
+        " <small class='prayer-time'>" + 
+        nextPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + 
+        "</small>");
+    $('#countdown').html("- " + hours + " jam " + minutes + " menit " + seconds + " detik");
+   // $("#prayer").show();
+    $("#tidak_ada_jadwal").hide();
 }
 
 setInterval(updateCountdown, 1000);
-updateCountdown(); // First run
+updateCountdown();
 
   
 // tampilan depan jadwal sholat
