@@ -145,8 +145,8 @@ function updateCountdown() {
       const nextPrayer = getNextPrayerTime(jadwalSholat);
 
       if (!nextPrayer) {
-        // $('#prayer').html("Semua jadwal sholat hari ini telah berlalu.");
-        $("#prayer").css("display", "none");
+        // $('#Nextprayer').html("Semua jadwal sholat hari ini telah berlalu.");
+        $("#Nextprayer").css("display", "none");
         $("#tidak_ada_jadwal").css("display", "block");
         $('#countdown').html(" 0 jam 0 menit 0 detik");
         return;
