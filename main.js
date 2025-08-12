@@ -225,7 +225,7 @@ const schule= [
   { nama: "Isya", waktu: waktu.isya }
 ];
 $(schule).each(function(i,val){
-  $('#jadwal_List').append("<li class='list-group-item  d-flex justify-content-between align-items-center "+val.nama+"'><div class='aligned'><img src='src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/><span>"+val.nama+"</span></div><span class='badge bg-primary'>"+val.waktu+"</span></li>");
+  $('#jadwal_List').append("<li class='list-group-item  d-flex justify-content-between align-items-center "+val.nama+"'><div class='aligned'><img src='src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/>"+"&#x20;"+"<span>"+val.nama+"</span></div><span class='badge bg-primary'>"+val.waktu+"</span></li>");
 });
 
 // Mengambil teks di dalam span
