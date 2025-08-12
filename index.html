@@ -140,66 +140,42 @@
       
       <!-- jadwal sholat -->
       <div class="col-md-4 col-sm-4">
-
-
-          <div class="tile">
-                    <div class="wrapper">
-                        <div class="header">
-                          <p class="location"><i class="fi fi-sr-marker"></i> Kota Surakarta</p>
+            <div class="card tile">
+              <div class="card-header header">
+                  <h2 class="text-1xl" id="Nextprayer"></h2>
+                  <img src="src/icon/prayer-mat_7099103.png" style="display: block; margin: auto;width: 15%;" id="tidak_ada_jadwal" />
+                  <span class="text-sm" id="countdown">- 02:29:21</span>
+              </div>
+              <div class="card-body">
+                   <div class="banner-img">
+                    <span id="hari-pasaran" class="badge bg-light" style="color: #59687f;">Rabu Pahing</span>
+                   </div>
+                   <div class="dates">
+                     <div class="start">
+                     <strong>Masehi</strong>
+                     <strong id="tanggal-masehi" class="tanggal-masehi">Masehi</strong>
+                     <span></span>
+                     </div>
+                     <div class="ends">
+                     <strong>Hijriah</strong>
+                     <strong id="tanggal-hijriah" class="tanggal-masehi">Masehi</strong>
+                     </div>
+                   </div>
+                   <ul class="list-group list-group-flush list-group-horizontal flex-wrap" id="jadwal_List"></ul>
+              </div>
+              <div class="card-footer footer">
+                  <p>Waktu Shalat telah ditashih oleh</p>
+                  <img src="https://lh3.googleusercontent.com/d/1YmVIJSCu6IllJ7sXCaffcJR7wSg4-3uw=w1000?authuser=1"/>
                          
-<div id="SholatSelanjutnya">
- <h2 class="text-1xl" id="Nextprayer"></h2>
-<span class="text-sm" id="countdown">- 02:29:21</span>
-</div>
-                          <img src="src/icon/prayer-mat_7099103.png" style="display: block; margin: auto;width: 15%;" id="tidak_ada_jadwal" />
-            </div>              
+              </div>
+            </div>
 
-                        <div class="banner-img">
-                             <span id="hari-pasaran" class="badge bg-light" style="color: #59687f;">Rabu Pahing</span>
-                        </div>
-
-                        <div class="dates">
-                            <div class="start">
-                                <strong>Masehi</strong>
-                                <strong id="tanggal-masehi" class="tanggal-masehi">Masehi</strong>
-                                <span></span>
-                            </div>
-                            <div class="ends">
-                                <strong>Hijriah</strong>
-                                <strong id="tanggal-hijriah" class="tanggal-masehi">Masehi</strong>
-                            </div>
-                        </div>
-
-
-                       
-                          <ul class="list-group list-group-flush list-group-horizontal flex-wrap" id="jadwal_List"></ul>
-
-<div class="input-group mb-3">
-  <span class="input-group-text" id="JedaIqomah">Jeda iqomah</span>
-  <input type="number" class="form-control" style="text-align: center;" id="iqomah_minutes" value="10">
-  <span class="input-group-text">menit</span>
-</div>
-
-                        <div class="footer">
-                            <p>Waktu Shalat telah ditashih oleh</p>
-                            <img src="https://lh3.googleusercontent.com/d/1YmVIJSCu6IllJ7sXCaffcJR7wSg4-3uw=w1000?authuser=1"/>
-                        </div>
-                    </div>
-                </div>
-
-       
-        
+              
+     
       </div>
       <!-- jadwal sholat -->
       
   </div>
-
-
-<!-- <div id="countdown"></div> -->
-  
-
-  
-
 </div>
 
 <script type="text/javascript" src="src/json/jadwalSholat.json"></script>
@@ -208,7 +184,6 @@
 <script type="text/javascript" src="main.js"></script>
 <script type="text/javascript">
     var divInnerWidth = $(".slide").innerWidth();
-    // alert("Inner Width (including padding): " + divInnerWidth);
     const Height1 = divInnerWidth / (16/9); 
     $("#Kas").width(divInnerWidth).height(Height1);
 </script>
