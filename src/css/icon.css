@@ -1,9 +1,0 @@
-    .my-icon-imsak::before {
-        content: url('path/to/your/icon.png'); /* Replace with your image path */
-        display: inline-block; /* Important for the image to render */
-        width: 100%; /* Make the image fill the parent's width */
-        height: 100%; /* Make the image fill the parent's height */
-        background-size: contain; /* Ensures the image fits within the element */
-        background-repeat: no-repeat; /* Prevents image repetition */
-        background-position: center; /* Centers the image within the element */
-    }
