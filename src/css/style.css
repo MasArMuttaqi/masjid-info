@@ -260,7 +260,8 @@ div.footer {
 .list-group-horizontal.flex-wrap > .list-group-item {
     flex: 0 0 50%; /* 2 items per row */
     max-width: 48%;
-    margin: 4px;
+    margin: 4px 2px 5px 2px; 
+    /* Top, Right, Bottom, Left */
     border-radius: 8px;
   }
 
