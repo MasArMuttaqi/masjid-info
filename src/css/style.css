@@ -159,10 +159,10 @@ li .aligned span {
     text-align: center;
     position: relative;
     color: #59687f;
-    font-size: 14pt;
+    font-size: 18pt;
     font-weight: 700;
-    height: 4px;
-    text-transform: uppercase;
+    height: 11px;
+    text-transform: capitalize;
     letter-spacing: 2px;
 }
 
