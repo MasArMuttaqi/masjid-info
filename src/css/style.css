@@ -76,10 +76,10 @@ body{
     display: inline-block;
     top: 50%;
     left: 60px;
-    font-weight: 300;
+    font-weight: 700;
     font-size: 9pt;
     font-family: "Roboto", sans-serif;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .separator-left {
