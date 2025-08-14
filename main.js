@@ -72,7 +72,7 @@ function updateClock() {
   const seconds = now.getSeconds().toString().padStart(2, '0');
 
   const clockDisplay = `${hours}:${minutes}:${seconds}  WIB`;
-  $('#clock').html(clockDisplay); 
+  $('#clock-1').html(clockDisplay); 
 }
 
 function updateClockEverySecond() {
