@@ -110,20 +110,7 @@ function convertHijriMonth(arabicMonth) {
 $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+' '+tahunHijriah); 
 // melihat tanggal hijriah Set zona waktu Indonesia (WIB)
 
-// jadwal sholat dan countdown
-const datas = [
-      {
-        tanggal: "2025-08-12",
-        imsak: "04:24",
-        subuh: "04:34",
-        terbit: "05:50",
-        duha: "06:20",
-        zuhur: "12:01",
-        asar: "16:40",
-        magrib: "18:08",
-        isya: "19:08"
-      }
-    ];
+
 // filter data dari json
 const targetDate = date.toISOString().slice(0, 10);
 const jadwalSholat = datas.filter(item => item.tanggal === targetDate);
