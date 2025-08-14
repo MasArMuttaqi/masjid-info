@@ -100,37 +100,6 @@ body{
 }
 
 
-.clock {
-  /* Pakai mono jika ada, fallback ke Digital-7 biasa lalu monospace */
-  font-family: "Digital-7 Mono", "Digital-7", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  /* Pastikan angka tabular (lebar seragam) jika font mendukung */
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
-
-  /* Ukuran responsif tapi konsisten proporsinya */
-  font-size: clamp(40px, 10vw, 120px);
-  line-height: 1;
-  letter-spacing: 0.1ch;     /* sedikit spasi antar karakter */
-  color: #b8ffb8;
-  text-shadow: 0 0 .4rem rgba(0,255,120,.8), 0 0 .1rem rgba(0,255,120,.9);
-  background: #0b0f0b;
-  padding: .6rem 1rem;
-  border-radius: 1rem;
-  display: inline-block;
-  user-select: none;
-  white-space: nowrap;
-}
-
-/* 3) Kunci tiap karakter ke lebar 1ch agar benar-benar tidak bergeser */
-.clock .char {
-  display: inline-block;
-  width: 1ch;          /* semua digit & separator sama lebar */
-  text-align: center;
-}
-
-/* (Opsional) Sedikit jarak ekstra untuk titik dua */
-.clock .separator { margin: 0 .1ch; }
-
 
 .aligned {
    display: flex;
