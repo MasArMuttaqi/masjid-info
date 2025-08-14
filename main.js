@@ -72,7 +72,7 @@ function updateClock() {
   const seconds = now.getSeconds().toString().padStart(2, '0');
 
   const clockDisplay = `${hours}:${minutes}:${seconds}  WIB`;
-  $('#clock-1').html(clockDisplay); 
+  $('#clock').html(clockDisplay); 
 }
 
 function updateClockEverySecond() {
@@ -82,133 +82,6 @@ function updateClockEverySecond() {
 
 updateClockEverySecond();
 // jam otomatis
-
-
-$(function(){
-
-    // Cache some selectors
-
-    var clock = $('#clock'),
-        ampm = clock.find('.ampm');
-
-    // Map digits to their names (this will be an array)
-    var digit_to_name = 'zero one two three four five six seven eight nine'.split(' ');
-
-    // This object will hold the digit elements
-    var digits = {};
-
-    // Positions for the hours, minutes, and seconds
-    var positions = [
-        'h1', 'h2', ':', 'm1', 'm2', ':', 's1', 's2'
-    ];
-
-    // Generate the digits with the needed markup,
-    // and add them to the clock
-
-    var digit_holder = clock.find('.digits');
-
-    $.each(positions, function(){
-
-        if(this == ':'){
-            digit_holder.append('<div class="dots">');
-        }
-        else{
-
-            var pos = $('<div>');
-
-            for(var i=1; i<8; i++){
-                pos.append('<span class="d' + i + '">');
-            }
-
-            // Set the digits as key:value pairs in the digits object
-            digits[this] = pos;
-
-            // Add the digit elements to the page
-            digit_holder.append(pos);
-        }
-
-    });
-
-    // Add the weekday names
-
-    var weekday_names = 'AHAD SENIN SELASA RABU KAMIS JUM&apos;AT SABTU'.split(' '),
-        weekday_holder = clock.find('.weekdays');
-
-    $.each(weekday_names, function(){
-        weekday_holder.append('<span>' + this + '</span>');
-    });
-
-    var weekdays = clock.find('.weekdays span');
-
-    // Run a timer every second and update the clock
-
-    // hari pasaran jawa
-        var hariPasaran = 'Legi Pahing Pon Wage Kliwon'.split(' '),
-            Haripasaran_holder = clock.find('.pasaran');
-
-        $.each(hariPasaran, function(){
-            Haripasaran_holder.append('<span>' + this + '</span>');
-        });
-
-        var pasaran = clock.find('.pasaran span');
-
-        function HariPasaranJawa(tanggalInput) {
-          const tanggal = new Date(tanggalInput);
-          const acuan = new Date('1900-01-01'); // Hitung selisih hari dari acuan (1 Januari 1900 adalah Legi)
-          const selisihHari = Math.floor((tanggal - acuan) / (1000 * 60 * 60 * 24));
-          const pasaran = selisihHari % 5;
-
-          return `${pasaran}`;
-        } 
-        // hari pasaran jawa
-
-    (function update_time(){
-
-        // Use moment.js to output the current time as a string
-        // hh is for the hours in 12-hour format,
-        // mm - minutes, ss-seconds (all with leading zeroes),
-        // d is for day of week and A is for AM/PM
-
-        var now = moment().format("hhmmssd");
-
-        digits.h1.attr('class', digit_to_name[now[0]]);
-        digits.h2.attr('class', digit_to_name[now[1]]);
-        digits.m1.attr('class', digit_to_name[now[2]]);
-        digits.m2.attr('class', digit_to_name[now[3]]);
-        digits.s1.attr('class', digit_to_name[now[4]]);
-        digits.s2.attr('class', digit_to_name[now[5]]);
-
-        // The library returns Sunday as the first day of the week.
-        // Stupid, I know. Lets shift all the days one position down, 
-        // and make Sunday last
-
-        var dow = now[6];
-        dow--;
-
-        // Sunday!
-        if(dow < 0){
-            // Make it last
-            dow = 6;
-        }
-
-        // Mark the active day of the week
-        weekdays.removeClass('active').eq(dow).addClass('active');
-
-        var hari = moment().format("YYYY-MM-DD");
-        var HariPasaran = HariPasaranJawa(hari);
-
-        pasaran.removeClass('active').eq(HariPasaran).addClass('active');
-
-
-        // Set the am/pm text:
-        ampm.text("WIB");
-
-        // Schedule this function to be run again in 1 sec
-        setTimeout(update_time, 1000);
-
-    })();
-
-});
 
 // melihat tanggal hijriah Set zona waktu Indonesia (WIB)
 moment.locale('id');
@@ -238,6 +111,19 @@ $('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+'
 // melihat tanggal hijriah Set zona waktu Indonesia (WIB)
 
 // jadwal sholat dan countdown
+const datas = [
+      {
+        tanggal: "2025-08-12",
+        imsak: "04:24",
+        subuh: "04:34",
+        terbit: "05:50",
+        duha: "06:20",
+        zuhur: "12:01",
+        asar: "16:40",
+        magrib: "18:08",
+        isya: "19:08"
+      }
+    ];
 // filter data dari json
 const targetDate = date.toISOString().slice(0, 10);
 const jadwalSholat = datas.filter(item => item.tanggal === targetDate);
@@ -301,14 +187,45 @@ function updateCountdown() {
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
             $("#Nextprayer").html(currentPrayer.name + " <small class='prayer-time'>" + currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + "</small>");
-            $("#countdown").html("Iqomah dalam waktu : "+minutes + " menit " + seconds + " detik");
+            // $("#countdown").html("Iqomah dalam waktu : "+minutes + " menit " + seconds + " detik");
            // $("#prayer").show();
             $("#tidak_ada_jadwal").hide();
+
+            // const totalIqomahSeconds = iqomahMinutes * 60;
+            // const remainingSeconds = Math.floor((iqomahEnd - now) / 1000);
+            // const remainingMinutes = Math.floor(remainingSeconds / 60);
+            // const seconds = remainingSeconds % 60;
+
+            // Menit radial
+            const minuteCircumference = 2 * Math.PI * 54;
+            const minutePercentage = minutes / iqomahMinutes;
+            const minuteOffset = minuteCircumference * (1 - minutePercentage);
+
+            // Detik radial
+            const secondCircumference = 2 * Math.PI * 54;
+            const secondPercentage = seconds / 60;
+            const secondOffset = secondCircumference * (1 - secondPercentage);
+
+            // Update radial menit
+            document.getElementById("minute-progress").style.strokeDashoffset = minuteOffset;
+            document.getElementById("minute-text").textContent = Minutes;
+
+            // Update radial detik
+            document.getElementById("second-progress").style.strokeDashoffset = secondOffset;
+            document.getElementById("second-text").textContent = seconds.toString().padStart(2, "0");
+
+
             return;
         } else if (iqomahActive) {
             // Iqomah baru saja selesai
             audioEndIqomah.play();
             iqomahActive = false;
+            // Reset radial
+            document.getElementById("minute-progress").style.strokeDashoffset = 0;
+            document.getElementById("second-progress").style.strokeDashoffset = 0;
+            document.getElementById("minute-text").textContent = "";
+            document.getElementById("second-text").textContent = "";
+
         }
     }
 
