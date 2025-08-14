@@ -66,24 +66,21 @@ $('#tanggal-masehi').html(formatTanggalIndo(formatDateToYMD(date)));
 
 // jam otomatis
 function updateClock() {
-  function pad(n){ return String(n).padStart(2, "0"); }
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
 
-function renderClock() {
-  const d = new Date();
-  const h = pad(d.getHours());
-  const m = pad(d.getMinutes());
-  const s = pad(d.getSeconds());
-  const txt = `${h}:${m}:${s}`;
-
-  // Bungkus setiap karakter agar lebarnya bisa dikunci via CSS (.char)
-  document.getElementById("clock").innerHTML =
-    [...txt].map(ch =>
-      `<span class="char${ch === ":" ? " separator" : ""}">${ch}</span>`
-    ).join("");
+  const clockDisplay = `${hours}:${minutes}:${seconds}  WIB`;
+  $('#clock').html(clockDisplay); 
 }
 
-renderClock();
-setInterval(renderClock, 1000);
+function updateClockEverySecond() {
+  updateClock();
+  setInterval(updateClock, 1000);
+}
+
+updateClockEverySecond();
 // jam otomatis
 
 // melihat tanggal hijriah Set zona waktu Indonesia (WIB)
