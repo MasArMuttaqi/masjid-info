@@ -106,11 +106,11 @@ body{
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
   /* Ukuran responsif tapi konsisten proporsinya */
-  font-size: clamp(40px, 10vw, 120px);
+  font-size: clamp(16pt, 10vw, 18pt);
   line-height: 1;
   letter-spacing: 0.1ch;     /* sedikit spasi antar karakter */
   color: #b8ffb8;
-
+}
 
 .aligned {
    display: flex;
