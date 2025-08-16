@@ -99,7 +99,7 @@ body{
     content: '';
 }
 
-.clock {
+#clock {
   /* Pakai mono jika ada, fallback ke Digital-7 biasa lalu monospace */
   font-family: "Digital-7 Mono", "Digital-7", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   /* Pastikan angka tabular (lebar seragam) jika font mendukung */
