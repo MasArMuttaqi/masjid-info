@@ -174,45 +174,16 @@ function updateCountdown() {
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
             $("#Nextprayer").html(currentPrayer.name + " <small class='prayer-time'>" + currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + "</small>");
-            // $("#countdown").html("Iqomah dalam waktu : "+minutes + " menit " + seconds + " detik");
+             $("#countdown").html("Iqomah dalam waktu : "+minutes + " menit " + seconds + " detik");
            // $("#prayer").show();
             $("#tidak_ada_jadwal").hide();
-
-            // const totalIqomahSeconds = iqomahMinutes * 60;
-            // const remainingSeconds = Math.floor((iqomahEnd - now) / 1000);
-            // const remainingMinutes = Math.floor(remainingSeconds / 60);
-            // const seconds = remainingSeconds % 60;
-
-            // Menit radial
-            const minuteCircumference = 2 * Math.PI * 54;
-            const minutePercentage = minutes / iqomahMinutes;
-            const minuteOffset = minuteCircumference * (1 - minutePercentage);
-
-            // Detik radial
-            const secondCircumference = 2 * Math.PI * 54;
-            const secondPercentage = seconds / 60;
-            const secondOffset = secondCircumference * (1 - secondPercentage);
-
-            // Update radial menit
-            document.getElementById("minute-progress").style.strokeDashoffset = minuteOffset;
-            document.getElementById("minute-text").textContent = Minutes;
-
-            // Update radial detik
-            document.getElementById("second-progress").style.strokeDashoffset = secondOffset;
-            document.getElementById("second-text").textContent = seconds.toString().padStart(2, "0");
-
 
             return;
         } else if (iqomahActive) {
             // Iqomah baru saja selesai
             audioEndIqomah.play();
             iqomahActive = false;
-            // Reset radial
-            document.getElementById("minute-progress").style.strokeDashoffset = 0;
-            document.getElementById("second-progress").style.strokeDashoffset = 0;
-            document.getElementById("minute-text").textContent = "";
-            document.getElementById("second-text").textContent = "";
-
+            
         }
     }
 
