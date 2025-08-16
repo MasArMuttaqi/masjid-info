@@ -99,6 +99,17 @@ body{
     content: '';
 }
 
+.clock {
+  /* Pakai mono jika ada, fallback ke Digital-7 biasa lalu monospace */
+  font-family: "Digital-7 Mono", "Digital-7", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* Pastikan angka tabular (lebar seragam) jika font mendukung */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  /* Ukuran responsif tapi konsisten proporsinya */
+  font-size: clamp(40px, 10vw, 120px);
+  line-height: 1;
+  letter-spacing: 0.1ch;     /* sedikit spasi antar karakter */
+  color: #b8ffb8;
 
 
 .aligned {
