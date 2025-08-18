@@ -100,17 +100,31 @@ body{
 }
 
 #clock {
-  /* Pakai mono jika ada, fallback ke Digital-7 biasa lalu monospace */
   font-family: "Digital-7 Mono", "Digital-7", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  /* Pastikan angka tabular (lebar seragam) jika font mendukung */
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
-  /* Ukuran responsif tapi konsisten proporsinya */
   font-size: clamp(26pt, 10vw, 26pt);
   line-height: 1;
-  letter-spacing: 0.1ch;     /* sedikit spasi antar karakter */
-  color: #fff;
-}
+  letter-spacing: 0.1ch;
+  color: #3c3c3c;
+  position: relative;
+  z-index: 5;
+}  
+
+#clock::after {
+  font-family: "Digital-7 Mono", "Digital-7", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  font-size: clamp(26pt, 10vw, 26pt);
+  line-height: 1;
+  letter-spacing: 0.1ch;
+  content: "88:88:88";
+  color: #bfbfbf;
+  opacity: 0.3;
+  position: fixed;
+  left:0px;
+  z-index: -1;
+}  
 
 .aligned {
    display: flex;
