@@ -71,7 +71,7 @@ function updateClock() {
   const minutes = now.getMinutes().toString().padStart(2, '0');
   const seconds = now.getSeconds().toString().padStart(2, '0');
 
-  const clockDisplay = `${hours}:${minutes}:${seconds}  WIB`;
+  const clockDisplay = `${hours}:${minutes}:${seconds}`;
   $('#clock').html(clockDisplay); 
 }
 
