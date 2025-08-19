@@ -106,7 +106,7 @@ body{
   font-size: clamp(26pt, 10vw, 26pt);
   line-height: 1;
   letter-spacing: 0.1ch;
-  color: #3c3c3c;
+  color: #fff;
   position: relative;
   z-index: 999;
 }  
@@ -120,7 +120,7 @@ body{
   letter-spacing: 0.1ch;
   content: "88:88:88";
   color: #bfbfbf;
-  opacity: 0.3;
+  opacity: 0.5;
   position: fixed;
   left:0px;
   z-index: -1;
