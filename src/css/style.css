@@ -108,7 +108,7 @@ body{
   letter-spacing: 0.1ch;
   color: #3c3c3c;
   position: relative;
-  z-index: 5;
+  z-index: 999;
 }  
 
 #clock::after {
