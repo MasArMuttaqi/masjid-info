@@ -48,19 +48,29 @@ function formatTanggalIndo(tanggalString) {
 $('#hari-pasaran').html(HariPasaranJawa(date));
 $('#tanggal-masehi').html(formatTanggalIndo(formatDateToYMD(date)));
 
-// konversi masehi ke hijriah
-  function konversiHijriah(gregorianDate) {
+ // Fungsi konversi Masehi -> Hijriah dengan koreksi rukyah
+function konversiHijriah(gregorianDate) {
   const hijriMonths = [
     "Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir",
     "Jumadil Awal", "Jumadil Akhir", "Rajab", "Syaban",
     "Ramadhan", "Syawal", "Zulkaidah", "Zulhijah"
   ];
 
-  const hijri = moment(gregorianDate, "YYYY-MM-DD").iDate();
-  const hijriMonth = hijriMonths[moment(gregorianDate, "YYYY-MM-DD").iMonth()];
-  const hijriYear = moment(gregorianDate, "YYYY-MM-DD").iYear();
+  // Tentukan kunci koreksi berdasarkan tahun-bulan masehi
+  const ymKey = moment(gregorianDate, "YYYY-MM-DD").format("YYYY-MM");
 
-  return `${hijri} ${hijriMonth} ${hijriYear} H`;
+  // Ambil nilai koreksi, default = 0 jika tidak ada di data
+  const correction = rukyahCorrection[ymKey] || 0;
+
+  // Terapkan koreksi ke tanggal masehi
+  const correctedDate = moment(gregorianDate, "YYYY-MM-DD").add(correction, "days");
+
+  // Ambil hasil konversi Hijriah
+  const hijriDay = correctedDate.iDate();
+  const hijriMonth = hijriMonths[correctedDate.iMonth()];
+  const hijriYear = correctedDate.iYear();
+
+  return `${hijriDay} ${hijriMonth} ${hijriYear} H`;
 }
 // konversi masehi ke hijriah
 
