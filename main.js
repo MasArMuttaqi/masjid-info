@@ -103,13 +103,36 @@ const hijriMonthMap = {
   'ذو الحجة': 'Dzulhijjah'
 };
 
-// Fungsi konversi
-function convertHijriMonth(arabicMonth) {
-  return hijriMonthMap[arabicMonth] || 'Unknown month';
-}
-$('#tanggal-hijriah').html(tanggal_Hijriah+' '+convertHijriMonth(bulanHijriah)+' '+tahunHijriah); 
-// melihat tanggal hijriah Set zona waktu Indonesia (WIB)
+// Data koreksi rukyah (dummy, sesuaikan data resmi Kemenag)
+// format: { "2025-08": +1 } berarti bulan Agustus 2025 ditambah 1 hari
+const rukyahCorrection = {
+  "2025-03": -1, // contoh: Rajab mundur 1 hari
+  "2025-04": 0,
+  "2025-05": +1, // contoh: Syawal maju 1 hari
+  "2025-08": -1   // default tanpa koreksi
+};
 
+// fungsi ambil tanggal hijriah dengan koreksi
+function getHijriCorrected(date = moment()) {
+  let hijriDate = moment(date).utcOffset(7); // WIB
+  let key = hijriDate.format("YYYY-MM");
+
+  // cek apakah bulan ini ada koreksi
+  let offset = rukyahCorrection[key] || 0;
+  if (offset !== 0) {
+    hijriDate.add(offset, "days");
+  }
+
+  const tanggal_Hijriah = hijriDate.format('iD');
+  const bulanHijriahArab = hijriDate.format('iMMMM');
+  const tahunHijriah = hijriDate.format('iYYYY');
+
+  return tanggal_Hijriah + " " + (hijriMonthMap[bulanHijriahArab] || bulanHijriahArab) + " " + tahunHijriah;
+}
+
+// tampilkan
+document.getElementById("tanggal-hijriah").innerHTML = getHijriCorrected(); 
+// melihat tanggal hijriah Set zona waktu Indonesia (WIB)
 
 // filter data dari json
 const targetDate = date.toISOString().slice(0, 10);
