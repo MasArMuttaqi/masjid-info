@@ -173,6 +173,8 @@ li .aligned span {
   position:relative;
   background-image: url("https://lh3.googleusercontent.com/d/1ZFhj6AVY8dfy70BwWlnGVyaEz7N3LZu9=w1000?authuser=1");
   background-size: cover;
+  min-height: 150px;
+  align-content: center;
 }
 
 .banner-img {
