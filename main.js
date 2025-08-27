@@ -48,31 +48,54 @@ function formatTanggalIndo(tanggalString) {
 $('#hari-pasaran').html(HariPasaranJawa(date));
 $('#tanggal-masehi').html(formatTanggalIndo(formatDateToYMD(date)));
 
- // Fungsi konversi Masehi -> Hijriah dengan koreksi rukyah
-function konversiHijriah(gregorianDate) {
-  const hijriMonths = [
-    "Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir",
-    "Jumadil Awal", "Jumadil Akhir", "Rajab", "Syaban",
-    "Ramadhan", "Syawal", "Zulkaidah", "Zulhijah"
-  ];
+ // Mapping nama bulan Hijriah Arab ke Indonesia
+const hijriMonthMap = {
+  'محرم': 'Muharram',
+  'صفر': 'Safar',
+  'ربيع الأول': 'Rabiul Awal',
+  'ربيع الآخر': 'Rabiul Akhir',
+  'جمادى الأولى': 'Jumadil Awal',
+  'جمادى الآخرة': 'Jumadil Akhir',
+  'رجب': 'Rajab',
+  'شعبان': "Sya'ban",
+  'رمضان': 'Ramadhan',
+  'شوال': 'Syawwal',
+  'ذو القعدة': 'Dzulkaidah',
+  'ذو الحجة': 'Dzulhijjah'
+};
 
-  // Tentukan kunci koreksi berdasarkan tahun-bulan masehi
-  const ymKey = moment(gregorianDate, "YYYY-MM-DD").format("YYYY-MM");
+// Objek koreksi rukyah, misal:
+// const rukyahCorrection = { "2025-08": 1, "2025-09": -1, ... };
 
-  // Ambil nilai koreksi, default = 0 jika tidak ada di data
+function convertToHijriWithCorrection(inputDate = null) {
+  // gunakan tanggal sekarang jika inputDate null
+  let date = inputDate ? moment(inputDate, "YYYY-MM-DD") : moment();
+
+  // set zona waktu WIB (+7)
+  date = date.utcOffset(7);
+
+  // buat key tahun-bulan untuk cek koreksi
+  const ymKey = date.format("YYYY-MM");
   const correction = rukyahCorrection[ymKey] || 0;
 
-  // Terapkan koreksi ke tanggal masehi
-  const correctedDate = moment(gregorianDate, "YYYY-MM-DD").add(correction, "days");
+  // terapkan koreksi tanggal
+  if (correction !== 0) {
+    date.add(correction, "days");
+  }
 
-  // Ambil hasil konversi Hijriah
-  const hijriDay = correctedDate.iDate();
-  const hijriMonth = hijriMonths[correctedDate.iMonth()];
-  const hijriYear = correctedDate.iYear();
+  // ambil tanggal, bulan, tahun hijriah dengan moment-hijri
+  const hijriDay = date.format("iD");
+  const hijriMonthArabic = date.format("iMMMM");
+  const hijriMonth = hijriMonthMap[hijriMonthArabic] || hijriMonthArabic;
+  const hijriYear = date.format("iYYYY");
 
   return `${hijriDay} ${hijriMonth} ${hijriYear} H`;
 }
-// konversi masehi ke hijriah
+
+// Contoh pemakaian:
+// document.getElementById("tanggal-hijriah").innerHTML = convertToHijriWithCorrection("2025-08-27");
+// atau default ke tanggal hari ini:
+document.getElementById("tanggal-hijriah").innerHTML = convertToHijriWithCorrection();
 
 // jam otomatis
 function updateClock() {
@@ -93,47 +116,7 @@ function updateClockEverySecond() {
 updateClockEverySecond();
 // jam otomatis
 
-// melihat tanggal hijriah Set zona waktu Indonesia (WIB)
-moment.locale('id');
-const bulanHijriah = moment().utcOffset(7).format('iMMMM');
-const tanggal_Hijriah = moment().utcOffset(7).format('iD');
-const tahunHijriah = moment().utcOffset(7).format('iYYYY');
-const hijriMonthMap = {
-  'محرم': 'Muharram',
-  'صفر': 'Safar',
-  'ربيع الأول': 'Rabiul Awal',
-  'ربيع الآخر': 'Rabiul Akhir',
-  'جمادى الأولى': 'Jumadil Awal',
-  'جمادى الآخرة': 'Jumadil Akhir',
-  'رجب': 'Rajab',
-  'شعبان': "Sya'ban",
-  'رمضان': 'Ramadhan',
-  'شوال': 'Syawwal',
-  'ذو القعدة': 'Dzulkaidah',
-  'ذو الحجة': 'Dzulhijjah'
-};
 
-// fungsi ambil tanggal hijriah dengan koreksi
-function getHijriCorrected(date = moment()) {
-  let hijriDate = moment(date).utcOffset(7); // WIB
-  let key = hijriDate.format("YYYY-MM");
-
-  // cek apakah bulan ini ada koreksi
-  let offset = rukyahCorrection[key] || 0;
-  if (offset !== 0) {
-    hijriDate.add(offset, "days");
-  }
-
-  const tanggal_Hijriah = hijriDate.format('iD');
-  const bulanHijriahArab = hijriDate.format('iMMMM');
-  const tahunHijriah = hijriDate.format('iYYYY');
-
-  return tanggal_Hijriah + " " + (hijriMonthMap[bulanHijriahArab] || bulanHijriahArab) + " " + tahunHijriah;
-}
-
-// tampilkan
-document.getElementById("tanggal-hijriah").innerHTML = getHijriCorrected(); 
-// melihat tanggal hijriah Set zona waktu Indonesia (WIB)
 
 // filter data dari json
 const targetDate = date.toISOString().slice(0, 10);
@@ -341,7 +324,7 @@ function getFridayDate() {
 }
 var JumatIni = getFridayDate();
 // test tanggal maklumat solat jumat id="tgl_sholatJumat"
-$('#tgl_sholatJumat').html(HariPasaranJawa(JumatIni)+" , "+formatTanggalIndo(JumatIni)+" / "+konversiHijriah(JumatIni));
+$('#tgl_sholatJumat').html(HariPasaranJawa(JumatIni)+" , "+formatTanggalIndo(JumatIni)+" / "+convertToHijriWithCorrection(JumatIni));
 // mengambil tanggal hari jumat diminggu ini
 
 // mengambil jadwal imam dan khotib sholat jumat
