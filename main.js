@@ -244,7 +244,6 @@ let nilai = ArrayKeterangan[0];
 // alert(nilai);
 $("#JedaIqomah").html("jeda iqomah "+nilai);
 $("."+nilai).toggleClass('list-group-item-success');
-}
 // jadwal sholat dan countdown
 
 // slides setting
