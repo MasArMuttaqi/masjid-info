@@ -242,35 +242,8 @@ var keterangan = $('.text-1xl').text();
 const ArrayKeterangan = keterangan.split(" ");
 let nilai = ArrayKeterangan[0];
 // alert(nilai);
-$("#JedaIqomah").html("jeda iqomah "+nilai); 
-
-switch(nilai) {
-  case "Imsak":
-        $('.Imsak').toggleClass('list-group-item-success');
-    break;
-  case "Subuh":
-        $('.Subuh').toggleClass('list-group-item-success');
-    break;
-    case "Terbit":
-        $('.Terbit').toggleClass('list-group-item-success');
-    break;
-    case "Duha":
-        $('.Dhuha').toggleClass('list-group-item-success');
-    break;
-    case "Zuhur":
-        $('.Zuhur').toggleClass('list-group-item-success');
-    break;
-    case "Asar":
-        $('.Asar').toggleClass('list-group-item-success');
-    break;
-    case "Magrib":
-        $('.Magrib').toggleClass('list-group-item-success');
-    break;
-    case "Isya":
-        $('.Isya').toggleClass('list-group-item-success');
-    break;
-  default:
-    $('.Subuh').toggleClass('');
+$("#JedaIqomah").html("jeda iqomah "+nilai);
+$("."+nilai).toggleClass('list-group-item-success');
 }
 // jadwal sholat dan countdown
 
