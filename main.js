@@ -354,25 +354,33 @@ if (!Array.isArray(filteredData) || filteredData.length === 0) {
       $('#MaklumatSholatJumat').html(opd);
     });
 // mengambil jadwal imam dan khotib sholat jumat
+
+//agenda pengajian
 const filterTanggal = formatDateToYMD(date);
 
 const targetDate1 = new Date(filterTanggal);
 
 const filtered2 = agenda.filter(item => new Date(item.tanggal) > targetDate1);
 
-//console.log(filtered);
-
 // Grouping berdasarkan kategori
-  const grouped = {};
-  $.each(filtered2, function(_, item) {
-    if (!grouped[item.tanggal]) {
-      grouped[item.tanggal] = [];
-    }
-    grouped[item.tanggal].push(item);
-  });
- 
-  // Buat tabel dengan rowspan
-  const tbody = $('#agenda-pengajian tbody');
+const grouped = {};
+$.each(filtered2, function(_, item) {
+  if (!grouped[item.tanggal]) {
+    grouped[item.tanggal] = [];
+  }
+  grouped[item.tanggal].push(item);
+});
+
+// Buat tabel dengan rowspan
+const tbody = $('#agenda-pengajian tbody');
+tbody.empty(); // bersihkan dulu
+
+if ($.isEmptyObject(grouped)) {
+  // kalau tidak ada data tampilkan 1 baris kosong
+  const row = $('<tr>');
+  row.append('<td colspan="3" class="text-center text-muted">Tidak ada agenda</td>');
+  tbody.append(row);
+} else {
   $.each(grouped, function(tanggal, items) {
     const rowspan = items.length;
     $.each(items, function(index, item) {
@@ -380,10 +388,23 @@ const filtered2 = agenda.filter(item => new Date(item.tanggal) > targetDate1);
       var cleanedWords = anotherString.split(/\s+/);
       const row = $('<tr>');
       if (index === 0) {
-        row.append('<td rowspan="' + rowspan + '" class="agenda-date"><div class="dayofmonth">'+cleanedWords[0]+'</div><div class="dayofweek">'+HariPasaranJawa(tanggal)+'</div><div class="shortdate text-muted">'+cleanedWords[1]+' '+cleanedWords[2]+'</div></td>');
+        row.append(
+          '<td rowspan="' + rowspan + '" class="agenda-date">' +
+            '<div class="dayofmonth">' + cleanedWords[0] + '</div>' +
+            '<div class="dayofweek">' + HariPasaranJawa(tanggal) + '</div>' +
+            '<div class="shortdate text-muted">' + cleanedWords[1] + ' ' + cleanedWords[2] + '</div>' +
+          '</td>'
+        );
       }
       row.append('<td class="agenda-time">' + item.jam + '</td>');
-      row.append('<td class="agenda-events"><div class="agenda-event"><i class="fi fi-tr-catalog-magazine"></i> ' + item.materi + '<br><i class="fi fi-tr-skill-user"></i>' + item.pemateri+ '</div></td>');
+      row.append(
+        '<td class="agenda-events"><div class="agenda-event">' +
+          '<i class="fi fi-tr-catalog-magazine"></i> ' + item.materi +
+          '<br><i class="fi fi-tr-skill-user"></i> ' + item.pemateri +
+        '</div></td>'
+      );
       tbody.append(row);
     });
   });
+}
+// agenda pengajian 
