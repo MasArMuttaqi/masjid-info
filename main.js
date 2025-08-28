@@ -166,10 +166,27 @@ function getNextPrayerTime() {
     return prayers.find(p => now < p.time) || null;
 }
 
+function jedaIqomah(target){
+var jeda = [
+  {"jeda_iqomah":"Subuh","menit":15},
+  {"jeda_iqomah":"Zuhur","menit":15},
+  {"jeda_iqomah":"Asar","menit":15},
+  {"jeda_iqomah":"Magrib","menit":10},
+  {"jeda_iqomah":"Isya","menit":15}
+];
+    // cari object sesuai nama
+var hasil = jeda.find(item => item.jeda_iqomah === target);
+
+// ambil menit
+var menit = hasil ? hasil.menit : null;
+return menit; // output: 10
+}
+
 function updateCountdown() {
     const now = new Date();
     const currentPrayer = getCurrentPrayerTime();
-    const iqomahMinutes = parseInt($("#iqomah_minutes").val()) || 0;
+   // const iqomahMinutes = parseInt($("#iqomah_minutes").val()) || 0;
+const iqomahMinutes = jedaIqomah(currentPrayer.name) || 0;
     if (currentPrayer) {
         const iqomahEnd = new Date(currentPrayer.time.getTime() + iqomahMinutes * 60000);
 
