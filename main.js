@@ -378,7 +378,7 @@ tbody.empty(); // bersihkan dulu
 if ($.isEmptyObject(grouped)) {
   // kalau tidak ada data tampilkan 1 baris kosong
   const row = $('<tr>');
-  row.append('<td colspan="3" class="text-center text-muted"><img src="src/icon/1000258151.png"> Tidak ada agenda</td>');
+  row.append('<td colspan="3" class="text-center text-muted"><img src="src/icon/1000258151.png" height="30px"> Tidak ada agenda</td>');
   tbody.append(row);
 } else {
   $.each(grouped, function(tanggal, items) {
