@@ -247,34 +247,7 @@ let toggleClass = ".sholat-"+nilai;
 console.log(toggleClass);
 $(toggleClass).toggleClass('list-group-item-success');
 
-switch(nilai) {
-  case "Imsak":
-        $('.Imsak').toggleClass('list-group-item-success');
-    break;
-  case "Subuh":
-        $('.Subuh').toggleClass('list-group-item-success');
-    break;
-    case "Terbit":
-        $('.Terbit').toggleClass('list-group-item-success');
-    break;
-    case "Duha":
-        $('.Dhuha').toggleClass('list-group-item-success');
-    break;
-    case "Zuhur":
-        $('.Zuhur').toggleClass('list-group-item-success');
-    break;
-    case "Asar":
-        $('.Asar').toggleClass('list-group-item-success');
-    break;
-    case "Magrib":
-        $('.Magrib').toggleClass('list-group-item-success');
-    break;
-    case "Isya":
-        $('.Isya').toggleClass('list-group-item-success');
-    break;
-  default:
-    $('.Subuh').toggleClass('');
-}  
+
 // jadwal sholat dan countdown
 
 // slides setting
@@ -378,7 +351,7 @@ tbody.empty(); // bersihkan dulu
 if ($.isEmptyObject(grouped)) {
   // kalau tidak ada data tampilkan 1 baris kosong
   const row = $('<tr>');
-  row.append('<td colspan="3" class="text-center text-muted"><img src="src/icon/1000258151.png" height="30px"> Tidak ada agenda</td>');
+  row.append('<td colspan="3" class="text-center text-muted"><img src="src/icon/1000258151.png" height="50px"> Tidak ada agenda</td>');
   tbody.append(row);
 } else {
   $.each(grouped, function(tanggal, items) {
