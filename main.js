@@ -122,7 +122,7 @@ updateClockEverySecond();
 const targetDate = date.toISOString().slice(0, 10);
 const jadwalSholat = datas.filter(item => item.tanggal === targetDate);
 // Audio element untuk akhir iqomah
-const audioEndIqomah = new Audio("end-iqomah.mp3");
+const audioEndIqomah = new Audio("src/audio/beep-alarm-366507.mp3");
 
 let iqomahActive = false; // status apakah sedang dalam iqomah
 
