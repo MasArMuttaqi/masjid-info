@@ -14,60 +14,38 @@
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
-
-<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<!-- moment date -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment-hijri@2.1.2/moment-hijri.min.js"></script>
-<!-- moment date -->
- <style>
-     * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
+    /> 
+    
+<!-- Icons -->
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <style>
+      html, body {
   height: 100%;
-  width: 100%;
-  background-size: cover; 
-  background-position: center; 
-  /* The single CSS rule */ 
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1_PhcSS9LFgRm3N7MXQYslPKjNT-okCP8UnD1Dzyplys0QqHe9RqhNTo&s=10"); 
-  /* For centering the text within container */ 
-  display: grid; 
-  place-items: center;
+  font-family: Arial, sans-serif;
 }
-@font-face {
-  font-family: aksara;
-  src: url("src/font/nyk Ngayogyan New Italic.ttf");
+      body {
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1_PhcSS9LFgRm3N7MXQYslPKjNT-okCP8UnD1Dzyplys0QqHe9RqhNTo&s=10") repeat center;
+    background-size: cover;
 }
+
 :root {
   --white-color: #fff;
   --flex: flex;
   --center: center;
 }
-nav{
-    z-index:15;
-}
+
 /* sidebar */
 .sidebar {
   position: fixed;
+  z-index: 300;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 125px;
+  width: 80px;
   padding: 15px;
-  background: rgba(73, 80, 87, 0.42);
+  /* background: #2c3d63; */
   transition: width 0.3s ease;
-  backdrop-filter: blur(80px);
+  backdrop-filter: blur(10px);
   box-shadow: 0px 0px 10px rgba(227, 228, 237, 0.25);
   border-right: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -75,14 +53,13 @@ nav{
 .sidebar i {
   font-size: 21px;
   text-align: center;
-/*   flex: 1; */
-  margin-right: 17px;
-  padding: 0.5rem 0.5rem;
+  flex: 1;
+  padding: 0.6rem;
 }
 
 /* sidebar opening */
 .sidebar.expanded {
- width: 400px;
+  width: 250px;
   align-items: flex-start;
 }
 
@@ -126,34 +103,28 @@ nav{
   color: var(--white-color);
 }
 
-.sidebar-logo img{
-  margin-right: 15px;
-  margin-left: 9px;
-}
-
 .sidebar .logo-text {
-  font-size: 14pt;
+  font-size: 1.4rem;
   font-weight: bold;
   display: none;
 }
 
 .sidebar.expanded .logo-text {
   display: inline-block;
- /* flex: 1.5; */
+  /* flex: 1.5; */
 }
 
 /* menu */
 .menu {
   list-style-type: none;
   margin-top: 2rem;
-  margin-left: -30px;
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
+  padding-left: 10px;
 }
 
 .menu li {
-   margin: 1.5rem 0;
+  margin: 1.5rem 0;
 }
+
 
 .menu a {
   display: var(--flex);
@@ -174,57 +145,23 @@ nav{
   border-radius: 5px;
 }
 
+.menu a:hover span{
+  color:#FFF;
+}
+
 .sidebar.expanded .menu a span {
   display: inline-block;
-  flex: 3;
-}
-.sidebar .submenu {
-  display: none;
-  list-style: none;
-  padding-left: 20px;
-}
-.sidebar li.open > .submenu {
-  display: block;
-}
-.submenu a {
-    display: var(--flex);
-    align-items: var(--center);
-    color: var(--white-color);
-    text-decoration: none;
-    transition: background 0.2s ease;
-    width: 100%;
-    height: 47.5px;
-    padding-left: 21px;
-     
-/* Top line: Arabic + Javanese */
-.topline{
-  font-size: 10pt;
-  line-height: 1.2;
-  color: var(--fg-dim);
-  font-weight: 300;
-/*   display: flex; */
-/*   flex-direction: column; */
-  align-items: center;
+  color: #065f46;
+  /* flex: 1; */
+  
 }
 
-.topline .arabic{
-  font-family: "El Messiri", sans-serif;
-}
-
-.topline .jawa{
-  /* Use a Javanese-capable font if you have one; otherwise fallback */
-  font-family: aksara;
-}
 .konten{
-    width:100%;
-    position: absolute;
-    top: 40px;
-    left:100px;
-    right:200px;
+    margin-left:90px;
 }
- </style>
-   <style>
-    :root{
+  </style>
+<style>
+     :root{
       --card-bg:#fafafa;
       --tile-bg:#f2f4f6;
       --tile-fg:#111827;
@@ -234,12 +171,11 @@ nav{
       --soft-shadow:0 6px 24px rgba(16,24,40,.08);
       --radius:22px;
     }
-
     .prayer-card{
-      background:var(--card-bg);
+      background:#fafafa;
       border:0;
-      border-radius:var(--radius);
-      box-shadow:var(--soft-shadow);
+      border-radius:22px;
+      box-shadow:0 6px 24px rgba(16,24,40,.08);
       padding:1.25rem;
     }
 
@@ -265,12 +201,14 @@ nav{
       white-space:nowrap;
     }
 
-    .date-pill small{ color:var(--muted); font-weight:500; }
+    .date-pill small{ 
+    color:var(--muted); font-weight:500; 
+    }
 
     .prayer-tile{
       background:var(--tile-bg);
       color:var(--tile-fg);
-      border-radius:10px;
+      border-radius:18px;
       padding:1rem 1rem;
       height:100%;
       display:flex;
@@ -279,31 +217,25 @@ nav{
       gap:.35rem;
       transition:.2s ease;
     }
-    .prayer-tile:hover{ transform:translateY(-2px); }
+    .prayer-tile:hover{ 
+    transform:translateY(-2px);
+    }
 
     .prayer-time{
       font-weight:800;
       font-size:1.15rem;
     }
-    
+    .prayer-name{
+      color:var(--muted);
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+    }
+    .prayer-name i{ 
+    font-size:1.1rem; 
+    }
 
-.prayer-name {
-  display: flex;
-  justify-content: space-between; 
-  /* teks kiri, icon kanan */
-  align-items: center;
-  /* sejajarkan vertikal */
-  padding: 4px 8px;
-}
-
-.prayer-name .text {
-  font-weight: bold;
-}
-
-.prayer-name .icon-right {
-  width: 30px;   /* atur ukuran icon */
-  height: 30px;
-}
     /* aktif (Subuh pada contoh) */
     .prayer-tile.active{
       background:var(--active-bg);
@@ -318,197 +250,186 @@ nav{
       .stack-gap{ row-gap:.75rem; }
     }
     
-  </style>
-  <style>
-  .rounded-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
+    /* tabel */
+        .table-responsive {
+        overflow-x: auto;
+    }
+
+    .sticky-col-1 {
+        position: sticky;
+        left: 0;
+        background-color: white; 
+        /* Ensure visibility over scrolling content */
+        z-index: 1; /* Keep it above other content */
+    }
+
+    .sticky-col-2 {
+        position: sticky;
+        /*left: 100px;*/
+        /* Adjust based on the width of sticky-col-1 */
+        background-color: white;
+        z-index: 1;
+    }
+    /* tabel /* Table responsive */
+    .table-responsive { 
     border-radius: 10px;
-    overflow: hidden;
-    overflow-y: hidden;
-    font-size: 12pt;
-  }
-
-  .rounded-table th, .rounded-table td {
-    padding: 10px;
-    border: none;
-    text-align: center;
-    vertical-align: middle;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .rounded-table tr:last-child td {
-    border-bottom: none;
-  }
-  .rounded-table th{
-    background-color: #008069;color: white;
-  }
-  i{
-    vertical-align: middle;
-    margin-right: 5px;
-  }
+    }
+    .rounded-table th { 
+    background: #008069; color: white; 
+    }
 </style>
-<style>
-  /* Warna highlight */
-  .highlight-today {
-    background-color: #ffe08a !important;
-    font-weight: bold;
-  }
-  
-  .judul{
-      color: #FFF;
-  }
-</style>
-
 </head>
 <body>
 <!-- partial:index.partial.html -->
+
 <nav class="sidebar" id="sidebar">
       <button type="button" class="toggle-btn" id="toggle-btn">
         <i class="fa-solid fa-caret-right"></i>
       </button>
       <section class="sidebar-logo" id="sidebar-logo">
-        <!-- <i class="fa-solid fa-web-awesome"></i> -->
-        <img src="https://digilib.isi-ska.ac.id/wp-content/uploads/2021/10/isi-ver-putih.png" width="30px" />
-        <h1 class="logo-text"><span class="topline arabic">مسجد کالوماساد</span> <span class="topline jawa">ꦩꦱ꧀ꦗꦶꦢ꧀ ꦑꦭꦶꦩꦱꦢ</span><br>Masjid Kalimasada</h1>
+        <i class="fa-solid fa-web-awesome"></i>
+        <h1 class="logo-text">Masjid Kalimasada</h1>
       </section>
       <ul class="menu">
         <li>
           <a href="#">
-            <i class="fi fi-rr-calendar-clock"></i>
-            <span>Jadwal Sholat</span>
+            <i class="fi fi-rr-calendar-clock"></i><span>Jadwal Sholat</span>
           </a>
         </li>
         <li>
           <a href="#"> 
-            <i class="fi fi-rr-duration-alt"></i>
-            <span>Jeda Iqomah</span> 
+            <i class="fa-solid fa-user"></i><span>Sholat Jum'at</span> 
           </a>
         </li>
         <li>
-          <a href="#">
-            <i class="fi fi-rr-book-open-cover"></i>
-            <span>Agenda Pengajian</span> 
-          </a>
-        </li>
-        
-        <li>
-            <li>
-    <a href="#" onclick="this.parentElement.classList.toggle('open')">
-      <i class="fi fi-rr-quran-user"></i>
-      <span>Sholat Jum'at</span>
-    </a>
-    <ul class="submenu">
-      <li><a href="#">Imam & Khatib</a></li>
-      <li><a href="#">Jadwal Jumat</a></li>
-    </ul>
-  </li>
           <a href="#"> 
-            <i class="fi fi-rr-rupiah-sign"></i>
-            <span>Kas</span> 
+            <i class="fa-solid fa-gear"></i><span>Agenda Pengajian</span> 
+          </a>
+        </li>
+         <li>
+          <a href="#"> 
+            <i class="fa-solid fa-gear"></i><span>Kas</span> 
           </a>
         </li>
         <li>
           <a href="#">
-            <i class="fi fi-rr-sign-out-alt"></i>
-            <span>Keluar</span>
+            <i class="fa-solid fa-right-from-bracket"></i><span>Keluar</span>
           </a>
         </li>
       </ul>
     </nav>
 <!-- partial -->
-<div class="container-fluid"> 
-<section class="mt-4 p-5 konten">
-    <!-- jadwal sholat -->
-     <div class="prayer-card">
+<!-- Main Content -->
+<div class="main-content container-fluid konten">
+    
+    <div class="container mt-3">
+  <div class="prayer-card">
     <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
       <div>
         <div class="title-lg">
-          <span id="Nextprayer">Subuh</span> <span class="text-success" id="JamNextprayer">04:41 WIB</span>
-          <span class="text-body-secondary" id="countdown">– 07:07:42</span>
+          Subuh <span class="text-success">04:41 WIB</span>
+          <span class="text-body-secondary">– 07:07:42</span>
         </div>
-        <div class="subtitle mt-1"><i class="bi bi-geo-alt-fill me-1 text-danger"></i>Jebres, Kota Surakarta</div>
+        <div class="subtitle mt-1"><i class="bi bi-geo-alt-fill me-1 text-danger"></i>Senen, Jakarta Pusat</div>
       </div>
       <div class="date-pill">
         <button class="btn btn-sm p-0 px-2 border-0"><i class="bi bi-chevron-left"></i></button>
-        <span id="hari-pasaran"></span>
-        <span id="tanggal-masehi">23 Agustus 2025</span><br>
-        <small id="tanggal-hijriah">29 Februari 1447</small>
+        <span>23 Agustus 2025</span>
+        <small>29 Februari 1447</small>
         <button class="btn btn-sm p-0 px-2 border-0"><i class="bi bi-chevron-right"></i></button>
       </div>
     </div>
 
-    <div class="row row-cols-2 row-cols-md-4 g-3 mt-3 stack-gap" id="jadwal_List">
-      <!-- <div id="jadwal_List"></div> -->
+    <div class="row row-cols-2 row-cols-md-4 g-3 mt-3 stack-gap">
+      <div class="col">
+        <div class="prayer-tile">
+          <div class="prayer-time">04:31 WIB</div>
+          <div class="prayer-name"><i class="bi bi-moon-stars"></i> Imsak</div>
+        </div>
       </div>
+      <div class="col">
+        <div class="prayer-tile active">
+          <div class="prayer-time">04:41 WIB</div>
+          <div class="prayer-name"><i class="bi bi-cloud"></i> Subuh</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="prayer-tile">
+          <div class="prayer-time">05:57 WIB</div>
+          <div class="prayer-name"><i class="bi bi-sunrise"></i> Terbit</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="prayer-tile">
+          <div class="prayer-time">06:28 WIB</div>
+          <div class="prayer-name"><i class="bi bi-water"></i> Dhuha</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="prayer-tile">
+          <div class="prayer-time">11:57 WIB</div>
+          <div class="prayer-name"><i class="bi bi-brightness-high"></i> Zuhur</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="prayer-tile">
+          <div class="prayer-time">15:18 WIB</div>
+          <div class="prayer-name"><i class="bi bi-cloud-sun"></i> Ashar</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="prayer-tile">
+          <div class="prayer-time">17:56 WIB</div>
+          <div class="prayer-name"><i class="bi bi-sunset"></i> Maghrib</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="prayer-tile">
+          <div class="prayer-time">19:06 WIB</div>
+          <div class="prayer-name"><i class="bi bi-moon"></i> Isya'</div>
+        </div>
+      </div>
+    </div>
   </div>
-    <!-- jadwal sholat -->
-    <h2 class="mt-3 judul">Judul Halaman</h2>
-    <!-- tabel jadwal sholat -->
-    <table class="table table-borderless mt-3 rounded-table" id="tabel-jadwalSholat">
-  <thead>
-    <tr>
-      <th>Hari</th>
-      <th>Tanggal</th>
-      <th>Imsak</th>
-      <th>Subuh</th>
-      <th>Terbit</th>
-      <th>Duha</th>
-      <th>Zuhur</th>
-      <th>Asar</th>
-      <th>Magrib</th>
-      <th>Isya</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-    <!-- table jadwal shholat -->
-    <!-- jeda Iqomah -->
-    <table class="table table-borderless mt-3 rounded-table" id="jeda_iqomah">
-  <thead>
-    <tr>
-      <th>Waktu Sholat</th>
-      <th>Jeda Iqomah (menit)</th>
-      <th>Aksi</th>
-    </tr>
-  </thead>
-  <tbody>
-      
-  </tbody>
-</table>
-    <!-- jeda Iqomah -->
-    <div class="mt-4 p-5 bg-primary text-white rounded">
-  <h1>Jumbotron Example</h1>
-  <p>Lorem ipsum...</p>
 </div>
 
-    <div class="card mt-4">
-     <div class="card-header">Jeda Iqomah</div>
-     <div class="card-body">Content</div>
-     <div class="card-footer">Footer</div>
-    </div>
+<div class="table-responsive mt-3">
+  <table class="table table-striped table-bordered rounded-table">
+        <thead>
+          <tr>
+            <th class="sticky-col-1">Hari</th>
+            <th class="sticky-col-2">Tanggal</th>
+            <th>Imsak</th>
+            <th>Subuh</th>
+            <th>Terbit</th>
+            <th>Dhuha</th>
+            <th>Zuhur</th>
+            <th>Asar</th>
+            <th>Magrib</th>
+            <th>Isya</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+             <td class="sticky-col-1">Selasa</td>
+             <td class="sticky-col-2">2 Sept 2025</td>
+             <td></td>
+             <td>04:34</td>
+             <td></td>
+             <td></td>
+             <td>12:08</td>
+             <td>15:24</td>
+             <td>18:03</td>
+             <td>19:08</td>
+          </tr>
+        </tbody>
+      </table>   
+</div>    
     
-</section>
+    
+    
 </div>
-<script>
-   const rukyahCorrection = {
-  "2025-01": 0,
-  "2025-02": 0,
-  "2025-03": -1,
-  "2025-04": 0,
-  "2025-05": +1,
-  "2025-06": 0,
-  "2025-07": 0,
-  "2025-08": -1,
-  "2025-09": 0,
-  "2025-10": 0,
-  "2025-11": 0,
-  "2025-12": 0
-}; 
-</script>
+<!-- main content -->
   <script>
       const sidebar = document.querySelector("#sidebar");
 const toggleBtn = document.querySelector("#toggle-btn");
@@ -522,307 +443,6 @@ toggleBtn.addEventListener("click", toggleSidebar);
 sidebarLogo.addEventListener("click", toggleSidebar);
 
   </script>
-<script>
-    const date = new Date();
 
-// format tanggal yyyy-mm-dd
-function formatDateToYMD(Date) {
-  const year = Date.getFullYear();
-  const month = String(Date.getMonth() + 1).padStart(2, '0'); // getMonth() dimulai dari 0
-  const day = String(Date.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
-}
-// format tanggal yyyy-mm-dd
-
-// hari pasaran jawa
-function HariPasaranJawa(tanggalInput) {
-  const hariPasaran = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
-  const hariMingguan = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&apos;at', 'Sabtu'];
-
-  // Konversi ke format Date
-  const tanggal = new Date(tanggalInput);
-
-  // Hari dalam seminggu
-  const hari = hariMingguan[tanggal.getDay()];
-
-  // Hitung selisih hari dari acuan (1 Januari 1900 adalah Legi)
-  const acuan = new Date('1900-01-01');
-  const selisihHari = Math.floor((tanggal - acuan) / (1000 * 60 * 60 * 24));
-  const pasaran = hariPasaran[selisihHari % 5];
-
-  return `${hari} ${pasaran}`;
-} 
-// hari pasaran jawa
-
-// format tanggal indonesia
-function formatTanggalIndo(tanggalString) {
-  const bulanIndo = [
-    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-  ];
-
-  const [tahun, bulan, tanggal] = tanggalString.split('-');
-  const namaBulan = bulanIndo[parseInt(bulan) - 1];
-
-  return `${parseInt(tanggal)} ${namaBulan} ${tahun}`;
-}
-// format tanggal indonesia
-
-
-$('#hari-pasaran').html(HariPasaranJawa(date));
-$('#tanggal-masehi').html(formatTanggalIndo(formatDateToYMD(date)));
-
- // Fungsi konversi Masehi -> Hijriah dengan koreksi rukyah
-function konversiHijriah(gregorianDate) {
-  const hijriMonths = [
-    "Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir",
-    "Jumadil Awal", "Jumadil Akhir", "Rajab", "Syaban",
-    "Ramadhan", "Syawal", "Zulkaidah", "Zulhijah"
-  ];
-
-  // Tentukan kunci koreksi berdasarkan tahun-bulan masehi
-  const ymKey = moment(gregorianDate, "YYYY-MM-DD").format("YYYY-MM");
-
-  // Ambil nilai koreksi, default = 0 jika tidak ada di data
-  const correction = rukyahCorrection[ymKey] || 0;
-
-  // Terapkan koreksi ke tanggal masehi
-  const correctedDate = moment(gregorianDate, "YYYY-MM-DD").add(correction, "days");
-
-  // Ambil hasil konversi Hijriah
-  const hijriDay = correctedDate.iDate();
-  const hijriMonth = hijriMonths[correctedDate.iMonth()];
-  const hijriYear = correctedDate.iYear();
-
-  return `${hijriDay} ${hijriMonth} ${hijriYear} H`;
-}
-// konversi masehi ke hijriah
-
-// jam otomatis
-function updateClock() {
-  const now = new Date();
-  const hours = now.getHours().toString().padStart(2, '0');
-  const minutes = now.getMinutes().toString().padStart(2, '0');
-  const seconds = now.getSeconds().toString().padStart(2, '0');
-
-  const clockDisplay = `${hours}:${minutes}:${seconds}`;
-  $('#clock').html(clockDisplay); 
-}
-
-function updateClockEverySecond() {
-  updateClock();
-  setInterval(updateClock, 1000);
-}
-
-updateClockEverySecond();
-// jam otomatis
-
-// melihat tanggal hijriah Set zona waktu Indonesia (WIB)
-moment.locale('id');
-const bulanHijriah = moment().utcOffset(7).format('iMMMM');
-const tanggal_Hijriah = moment().utcOffset(7).format('iD');
-const tahunHijriah = moment().utcOffset(7).format('iYYYY');
-const hijriMonthMap = {
-  'محرم': 'Muharram',
-  'صفر': 'Safar',
-  'ربيع الأول': 'Rabiul Awal',
-  'ربيع الآخر': 'Rabiul Akhir',
-  'جمادى الأولى': 'Jumadil Awal',
-  'جمادى الآخرة': 'Jumadil Akhir',
-  'رجب': 'Rajab',
-  'شعبان': "Sya'ban",
-  'رمضان': 'Ramadhan',
-  'شوال': 'Syawwal',
-  'ذو القعدة': 'Dzulkaidah',
-  'ذو الحجة': 'Dzulhijjah'
-};
-
-// fungsi ambil tanggal hijriah dengan koreksi
-function getHijriCorrected(date = moment()) {
-  let hijriDate = moment(date).utcOffset(7); // WIB
-  let key = hijriDate.format("YYYY-MM");
-
-  // cek apakah bulan ini ada koreksi
-  let offset = rukyahCorrection[key] || 0;
-  if (offset !== 0) {
-    hijriDate.add(offset, "days");
-  }
-
-  const tanggal_Hijriah = hijriDate.format('iD');
-  const bulanHijriahArab = hijriDate.format('iMMMM');
-  const tahunHijriah = hijriDate.format('iYYYY');
-
-  return tanggal_Hijriah + " " + (hijriMonthMap[bulanHijriahArab] || bulanHijriahArab) + " " + tahunHijriah;
-}
-
-// tampilkan
-document.getElementById("tanggal-hijriah").innerHTML = getHijriCorrected(); 
-// melihat tanggal hijriah Set zona waktu Indonesia (WIB)
-
-// jadwal sholat dan countdown
-
-const datas = [
-      {
-        tanggal: "2025-09-02",
-        imsak: "04:24",
-        subuh: "04:34",
-        terbit: "05:50",
-        duha: "06:20",
-        zuhur: "12:08",
-        asar: "15:24",
-        magrib: "18:03",
-        isya: "19:08"
-      }
-    ];
-
-// filter data dari json
-const targetDate = date.toISOString().slice(0, 10);
-const jadwalSholat = datas.filter(item => item.tanggal === targetDate);
-
-// Audio element untuk akhir iqomah
-const audioEndIqomah = new Audio("end-iqomah.mp3");
-
-let iqomahActive = false; // status apakah sedang dalam iqomah
-
-function getPrayerTimes() {
-    const now = new Date();
-    const today = jadwalSholat.find(j => j.tanggal === now.toISOString().slice(0, 10));
-    if (!today) return [];
-
-    return [
-        { name: "Imsak", time: today.imsak },
-        { name: "Subuh", time: today.subuh },
-        { name: "Terbit", time: today.terbit },
-        { name: "Duha", time: today.duha },
-        { name: "Zuhur", time: today.zuhur },
-        { name: "Asar", time: today.asar },
-        { name: "Magrib", time: today.magrib },
-        { name: "Isya", time: today.isya }
-    ].map(p => {
-        const [h, m] = p.time.split(":");
-        const d = new Date(now);
-        d.setHours(parseInt(h), parseInt(m), 0, 0);
-        return { name: p.name, time: d };
-    });
-}
-
-function getCurrentPrayerTime() {
-    const now = new Date();
-    const prayers = getPrayerTimes();
-
-    for (let i = prayers.length - 1; i >= 0; i--) {
-        if (now >= prayers[i].time) {
-            return prayers[i];
-        }
-    }
-    return null;
-}
-
-function getNextPrayerTime() {
-    const now = new Date();
-    const prayers = getPrayerTimes();
-    return prayers.find(p => now < p.time) || null;
-}
-
-const jeda = [
-  {"jeda_iqomah":"Subuh","menit":15},
-  {"jeda_iqomah":"Zuhur","menit":15},
-  {"jeda_iqomah":"Asar","menit":15},
-  {"jeda_iqomah":"Magrib","menit":10},
-  {"jeda_iqomah":"Isya","menit":15}
-];
-
-function jedaIqomah(target){
-    // cari object sesuai nama
-var hasil = jeda.find(item => item.jeda_iqomah === target);
-
-// ambil menit
-var menit = hasil ? hasil.menit : null;
-return menit; // output: 10
-}
-
-function updateCountdown() {
-    const now = new Date();
-    const currentPrayer = getCurrentPrayerTime();
-    //const iqomahMinutes = parseInt($("#iqomah_minutes").val()) || 0;
-    const iqomahMinutes = jedaIqomah(currentPrayer.name) || 0;
-    
-    $("#iqomah_minutes").val(iqomahMinutes);
-    $("#JedaIqomah").html("Jeda Iqomah "+currentPrayer.name);
-    
-    if (currentPrayer) {
-        const iqomahEnd = new Date(currentPrayer.time.getTime() + iqomahMinutes * 60000);
-
-        if (now < iqomahEnd) {
-            // Masih dalam waktu iqomah
-            iqomahActive = true; // set status aktif
-            const diff = iqomahEnd - now;
-            const minutes = Math.floor(diff / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            $("#Nextprayer").html(currentPrayer.name);
-            $("#JamNextprayer").html(currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':'));
-            $("#countdown").html("Iqomah : "+minutes + " menit " + seconds + " detik");
-        
-            return;
-        } else if (iqomahActive) {
-            // Iqomah baru saja selesai
-            audioEndIqomah.play();
-            iqomahActive = false;
-        }
-    }
-
-    // Countdown menuju sholat berikutnya
-    const nextPrayer = getNextPrayerTime();
-    if (!nextPrayer) {
-        $("#Nextprayer").html("belum ada jadwal");
-        // $("#JamNextprayer").html("00:00");
-        // $("#countdown").html("00 : 00 : 00");
-        $("#JamNextprayer").css("display","none");
-        $("#countdown").css("display","none");
-        return;
-    }
-
-    const diff = nextPrayer.time - now;
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    $("#Nextprayer").html(currentPrayer.name);
-            $("#JamNextprayer").html(currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':'));        
-    $("#countdown").html("- " + hours + " : " + minutes + " : " + seconds);
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-// tampilan depan jadwal sholat
-const waktu = jadwalSholat[0];
-const schule= [
-  { nama: "Imsak", waktu: waktu.imsak },
-  { nama: "Subuh", waktu: waktu.subuh },
-  { nama: "Terbit", waktu: waktu.terbit },
-  { nama: "Dhuha", waktu: waktu.duha },
-  { nama: "Zuhur", waktu: waktu.zuhur },
-  { nama: "Asar", waktu: waktu.asar },
-  { nama: "Magrib", waktu: waktu.magrib },
-  { nama: "Isya", waktu: waktu.isya }
-];
-$(schule).each(function(i,val){
-   $("#jadwal_List").append("<div class='col'><div class='prayer-tile'><div class='prayer-time'>"+val.waktu+" WIB</div><div class='prayer-name'>"+val.nama+"<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/cdfb2e5b36b2a123cd6240abd127e5e852825d7b/src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"' class='icon-right'/></div></div></div>");
-});
-
-<!-- tabel jadwal Sholat -->
-$(datas).each(function(i,val){
-        $("#tabel-jadwalSholat").append("<tr><td>"+HariPasaranJawa(val.tanggal)+"</td><td>"+formatTanggalIndo(val.tanggal)+"<br>"+getHijriCorrected(val.tanggal)+"</td><td>"+val.imsak+"</td><td>"+val.subuh+"</td><td>"+val.terbit+"</td><td>"+val.duha+"</td><td>"+val.zuhur+"</td><td>"+val.asar+"</td><td>"+val.magrib+"</td><td>"+val.isya+"</td></tr>");
-});
-<!-- table jadwal sholat -->
-<!-- tabel jeda iqomah -->
-$(jeda).each(function(i,val){
-        $("#jeda_iqomah").append("<tr><td>"+val.jeda_iqomah+"</td><td><input type='text' class='form-control' placeholder='Normal input' id='jedaiqomah-'"+val.jeda_iqomah+" value='"+val.menit+"'></td><td><button type='submit' class='btn btn-primary' id='submitjedaiqomah-'"+val.jeda_iqomah+">Ubah Jeda</button></td></tr>");
-});
-<!-- tabel jeda iqomah -->
-</script>
 </body>
 </html>
