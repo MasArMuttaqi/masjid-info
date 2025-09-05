@@ -66,6 +66,20 @@ const hijriMonthMap = {
 
 // Objek koreksi rukyah, misal:
 // const rukyahCorrection = { "2025-08": 1, "2025-09": -1, ... };
+const rukyahCorrection = {
+  "2025-01": 0,
+  "2025-02": 0,
+  "2025-03": -1,
+  "2025-04": 0,
+  "2025-05": +1,
+  "2025-06": 0,
+  "2025-07": 0,
+  "2025-08": -1,
+  "2025-09": 0,
+  "2025-10": 0,
+  "2025-11": 0,
+  "2025-12": 0
+};
 
 function convertToHijriWithCorrection(inputDate = null) {
   // gunakan tanggal sekarang jika inputDate null
