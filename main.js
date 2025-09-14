@@ -180,57 +180,101 @@ function getNextPrayerTime() {
     return prayers.find(p => now < p.time) || null;
 }
 
-function jedaIqomah(target){
 var jeda = [
-  {"jeda_iqomah":"Subuh","menit":15},
-  {"jeda_iqomah":"Zuhur","menit":15},
-  {"jeda_iqomah":"Asar","menit":15},
-  {"jeda_iqomah":"Magrib","menit":10},
-  {"jeda_iqomah":"Isya","menit":15}
+  {"jeda_iqomah":"Subuh","menit":15,"jamaah":10},
+  {"jeda_iqomah":"Zuhur","menit":15,"jamaah":10},
+  {"jeda_iqomah":"Asar","menit":15,"jamaah":10},
+  {"jeda_iqomah":"Magrib","menit":3,"jamaah":10},
+  {"jeda_iqomah":"Isya","menit":2,"jamaah":10}
 ];
+
+function jedaIqomah(target){
     // cari object sesuai nama
 var hasil = jeda.find(item => item.jeda_iqomah === target);
 
 // ambil menit
 var menit = hasil ? hasil.menit : null;
-return menit; // output: 10
+return menit;
 }
+
+function jamaah(target){
+var hasil = jeda.find(item => item.jeda_iqomah === target);
+
+// ambil menit
+var jamaah = hasil ? hasil.jamaah : null;
+return jamaah; 
+}
+
+let iqomahActive = false;   // status iqomah
+let jamaahActive = false;   // status sholat berjamaah
+let jamaahEnd = null;       // waktu akhir sholat berjamaah
 
 function updateCountdown() {
     const now = new Date();
     const currentPrayer = getCurrentPrayerTime();
-   // const iqomahMinutes = parseInt($("#iqomah_minutes").val()) || 0;
-const iqomahMinutes = jedaIqomah(currentPrayer.name) || 0;
+    const iqomahMinutes = jedaIqomah(currentPrayer?.name) || 0;
+
     if (currentPrayer) {
         const iqomahEnd = new Date(currentPrayer.time.getTime() + iqomahMinutes * 60000);
 
+        // === Sedang iqomah ===
         if (now < iqomahEnd) {
-            // Masih dalam waktu iqomah
-            iqomahActive = true; // set status aktif
+            iqomahActive = true;
+            jamaahActive = false; // reset
+
             const diff = iqomahEnd - now;
             const minutes = Math.floor(diff / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            $("#Nextprayer").html(currentPrayer.name + " <small class='prayer-time'>" + currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + "</small>");
-             $("#countdown").html("Iqomah dalam waktu : "+minutes + " menit " + seconds + " detik");
-           // $("#prayer").show();
+            $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/hourglass.gif' width='20px'/>Menuju Iqomah " + currentPrayer.name);
+            $("#Nextprayer").html(currentPrayer.name + 
+                " <small class='prayer-time'>" + 
+                currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + 
+                "</small>");
+            $("#countdown").html(minutes + " menit " + seconds + " detik");
             $("#tidak_ada_jadwal").hide();
-
             return;
-        } else if (iqomahActive) {
-            // Iqomah baru saja selesai
+        } 
+
+        // === Iqomah baru selesai, mulai sholat berjamaah ===
+        if (iqomahActive && !jamaahActive) {
             audioEndIqomah.play();
             iqomahActive = false;
-            
+            jamaahActive = true;
+
+            let durasiJamaah = jamaah(currentPrayer.name) || 0; // menit
+            jamaahEnd = new Date(now.getTime() + durasiJamaah * 60000);
+        }
+
+        // === Sedang sholat berjamaah ===
+        if (jamaahActive && jamaahEnd && now < jamaahEnd) {
+            const diff = jamaahEnd - now;
+            const m = Math.floor(diff / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/rub-el-hizb.gif' width='20px'/> Sholat " + currentPrayer.name + " berjamaah");
+            $("#tidak_ada_jadwal").show();
+            $("#tidak_ada_jadwal").attr("src", "https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/shalat.png");
+            $("#countdown").html("Sisa waktu: " + m + " menit " + s + " detik");
+           return;
+        }
+
+        // === Sholat berjamaah selesai ===
+        if (jamaahActive && jamaahEnd && now >= jamaahEnd) {
+            jamaahActive = false;
+            jamaahEnd = null;
+            $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/time.gif' width='20px'/> Menunggu waktu sholat");
         }
     }
 
-    // Countdown menuju sholat berikutnya
+    // === Countdown menuju sholat berikutnya ===
     const nextPrayer = getNextPrayerTime();
     if (!nextPrayer) {
         $("#Nextprayer").hide();
         $("#tidak_ada_jadwal").show();
+        $("#tidak_ada_jadwal").attr("src", "https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/prayer-mat_7099103.png");
         $("#countdown").html("0 jam 0 menit 0 detik");
+        $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/check.gif' width='20px'/> Semua sholat selesai hari ini");
         return;
     }
 
@@ -239,18 +283,17 @@ const iqomahMinutes = jedaIqomah(currentPrayer.name) || 0;
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
+    $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/time.gif' width='20px'/> Menunggu waktu sholat");
     $('#Nextprayer').html(nextPrayer.name + 
         " <small class='prayer-time'>" + 
         nextPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + 
         "</small>");
     $('#countdown').html("- " + hours + " jam " + minutes + " menit " + seconds + " detik");
-   // $("#prayer").show();
     $("#tidak_ada_jadwal").hide();
 }
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
-
   
 // tampilan depan jadwal sholat
 const waktu = jadwalSholat[0];
