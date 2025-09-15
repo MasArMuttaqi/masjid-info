@@ -144,7 +144,7 @@
               <div class="card-header header">
                   <h2 class="text-1xl" id="Nextprayer"></h2>
                   <img src="src/icon/prayer-mat_7099103.png" style="display: block; margin: auto;width: 15%;" id="tidak_ada_jadwal" />
-                  <small class="prayer-time" id="statusSholat">🕒 Menunggu waktu sholat</small>
+                  <small class="prayer-time" id="statusSholat" style="display:block;">🕒 Menunggu waktu sholat</small>
                   <span class="text-sm" id="countdown">- 02:29:21</span>
 
               </div>
@@ -163,22 +163,15 @@
                      <strong id="tanggal-hijriah" class="tanggal-masehi">Masehi</strong>
                      </div>
                    </div>
-                   <ul class="list-group list-group-flush list-group-horizontal flex-wrap" style="padding: 20px 0px; margin: 10px 20px;" id="jadwal_List"></ul>
+                   <ul class="list-group list-group-flush list-group-horizontal flex-wrap" id="jadwal_list"></ul>
+                   <!-- <ul class="list-group list-group-flush list-group-horizontal flex-wrap" style="padding: 20px 0px; margin: 10px 20px;" id="jadwal_List"></ul> -->
               </div>
               <div class="card-footer footer">
                   <p>Waktu Shalat telah ditashih oleh</p>
                   <img src="https://lh3.googleusercontent.com/d/1YmVIJSCu6IllJ7sXCaffcJR7wSg4-3uw=w1000?authuser=1"/>
                          
               </div>
-            </div>
-
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="JedaIqomah">Jeda iqomah</span>
-              <input type="number" class="form-control" style="text-align: center;" id="iqomah_minutes" value="10">
-              <span class="input-group-text">menit</span>
-            </div>
-              
-     
+            </div> 
       </div>
       <!-- jadwal sholat -->
       
@@ -188,7 +181,7 @@
 <script type="text/javascript" src="src/json/jadwalSholat.json"></script>
 <script type="text/javascript" src="src/json/maklumatJumat.json"></script>
 <script type="text/javascript" src="src/json/agenda.json"></script>
-<script type="text/javascript" src="src/json/rukyahCorrection.json"></script>
+<!-- <script type="text/javascript" src="src/json/rukyahCorrection.json"></script> -->
 <script type="text/javascript" src="main.js"></script>
 <script type="text/javascript">
     var divInnerWidth = $(".slide").innerWidth();

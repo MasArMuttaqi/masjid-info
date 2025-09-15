@@ -64,9 +64,7 @@ const hijriMonthMap = {
   'ذو الحجة': 'Dzulhijjah'
 };
 
-// Objek koreksi rukyah, misal:
-// const rukyahCorrection = { "2025-08": 1, "2025-09": -1, ... };
-const rukyahCorrection = {
+const rukyahCorrection = [{
   "2025-01": 0,
   "2025-02": 0,
   "2025-03": -1,
@@ -75,18 +73,18 @@ const rukyahCorrection = {
   "2025-06": 0,
   "2025-07": 0,
   "2025-08": -1,
-  "2025-09": 0,
+  "2025-09": -1,
   "2025-10": 0,
   "2025-11": 0,
   "2025-12": 0
-};
+}];
 
 function convertToHijriWithCorrection(inputDate = null) {
   // gunakan tanggal sekarang jika inputDate null
   let date = inputDate ? moment(inputDate, "YYYY-MM-DD") : moment();
 
   // set zona waktu WIB (+7)
-  date = date.utcOffset(7);
+  //date = date.utcOffset(7);
 
   // buat key tahun-bulan untuk cek koreksi
   const ymKey = date.format("YYYY-MM");
@@ -109,7 +107,53 @@ function convertToHijriWithCorrection(inputDate = null) {
 // Contoh pemakaian:
 // document.getElementById("tanggal-hijriah").innerHTML = convertToHijriWithCorrection("2025-08-27");
 // atau default ke tanggal hari ini:
-document.getElementById("tanggal-hijriah").innerHTML = convertToHijriWithCorrection();
+$('#tanggal-hijriah').html(convertToHijriWithCorrection());
+
+
+
+moment.locale('id');
+
+// data koreksi hasil rukyah
+// format: { "iYYYY-iMM": "YYYY-MM-DD" }
+const rukyahCorrection1 = {
+  "1447-01": "2025-06-26",
+  "1447-02": "2025-07-26",
+  "1447-03": "2025-08-25"
+};
+
+// fungsi konversi dengan fallback
+function convertToHijriWithRukyah(inputDate = null) {
+  // gunakan tanggal sekarang jika inputDate null
+  let date = inputDate ? moment(inputDate, "YYYY-MM-DD") : moment();
+  // date = date.utcOffset(7); // WIB
+
+  // konversi awal (fallback default moment-hijri)
+  let hijriDefault = moment(date).format("iYYYY-iMM-iD");
+  let hijriYear = moment(date).format("iYYYY");
+  let hijriMonth = moment(date).format("iMM");
+  let ymKey = `${hijriYear}-${hijriMonth}`;
+
+  if (rukyahCorrection1[ymKey]) {
+    let rukyahStart = moment(rukyahCorrection1[ymKey], "YYYY-MM-DD").utcOffset(7);
+    let diffDays = date.diff(rukyahStart, "days");
+
+    if (diffDays >= 0) {
+      let correctedDay = diffDays + 1; // +1 karena tanggal rukyahStart = 1 Hijriah
+      return `${hijriYear}-${hijriMonth}-${correctedDay}`;
+    } else {
+      // jika tanggal sebelum awal rukyah, fallback ke default
+      return hijriDefault;
+    }
+  } else {
+    // fallback jika bulan tidak ada di data koreksi
+    return hijriDefault;
+  }
+}
+
+// contoh penggunaan
+console.log("Default moment-hijri:", moment(formatDateToYMD(date)).format("iYYYY-iMM-iD"));
+console.log("Dengan koreksi:", convertToHijriWithRukyah(formatDateToYMD(date)));
+
 
 // jam otomatis
 function updateClock() {
@@ -138,7 +182,6 @@ const jadwalSholat = datas.filter(item => item.tanggal === targetDate);
 // Audio element untuk akhir iqomah
 const audioEndIqomah = new Audio("src/audio/beep-alarm-366507.mp3");
 
-let iqomahActive = false; // status apakah sedang dalam iqomah
 
 function getPrayerTimes() {
     const now = new Date();
@@ -231,7 +274,7 @@ function updateCountdown() {
                 " <small class='prayer-time'>" + 
                 currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + 
                 "</small>");
-            $("#countdown").html(minutes + " menit " + seconds + " detik");
+            $("#countdown").html("-  " + minutes + " menit " + seconds + " detik");
             $("#tidak_ada_jadwal").hide();
             return;
         } 
@@ -252,7 +295,7 @@ function updateCountdown() {
             const m = Math.floor(diff / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/rub-el-hizb.gif' width='20px'/> Sholat " + currentPrayer.name + " berjamaah");
+            $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/carpet.gif' width='20px'/> Sholat " + currentPrayer.name + " berjamaah");
             $("#tidak_ada_jadwal").show();
             $("#tidak_ada_jadwal").attr("src", "https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/shalat.png");
             $("#countdown").html("Sisa waktu: " + m + " menit " + s + " detik");
@@ -294,6 +337,7 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
   
 // tampilan depan jadwal sholat
 const waktu = jadwalSholat[0];
@@ -309,6 +353,7 @@ const schule= [
 ];
 $(schule).each(function(i,val){
   $('#jadwal_List').append("<li class='list-group-item  d-flex justify-content-between align-items-center  sholat-"+val.nama+"'><div class='aligned'><img src='src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/>"+"&#x20;"+"<span>"+val.nama+"</span></div><span class='badge bg-primary'>"+val.waktu+"</span></li>");
+  $("#jadwal_list").append("<li class='list-group-item sholat-"+val.nama+"' style='border: thin solid; border-color: #D3D3D3; border-bottom-left-radius: 10px; border-top-right-radius: 10px;'><div><span class='time d-block fw-bold'>"+val.waktu+" WIB</span><span class='info d-block text-muted'>"+val.nama+"</span></div><div><img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/cdfb2e5b36b2a123cd6240abd127e5e852825d7b/src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/></div></li>");
 });
 
 // Mengambil teks di dalam span
@@ -318,7 +363,6 @@ let nilai = ArrayKeterangan[0];
 // alert(nilai);
 $("#JedaIqomah").html("jeda iqomah "+nilai);
 let toggleClass = ".sholat-"+nilai;
-console.log(toggleClass);
 $(toggleClass).toggleClass('list-group-item-success');
 
 
