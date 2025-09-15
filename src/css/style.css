@@ -290,6 +290,40 @@ div.footer {
     border: 1px solid #ebeff2;
   }
 
+.list-group-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10px;
+      /* border:none; */
+      padding: 15px;
+      /* background-color:#fafafa; */
+      font-family: "Roboto", sans-serif;
+    }
+  
+    .list-group-item.active {
+      background-color: #d4f8d4 !important;
+      border-color: #d4f8d4 !important;
+      color: #000 !important;
+      font-weight: 600;
+    }
+    .time {
+     font-family: "Roboto", sans-serif;
+      font-weight: 800;
+      font-optical-sizing: auto;
+      display: block;
+      width: 100%;
+    }
+    .info {  
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    #statusSholat img{
+      border-radius: 3px;
+      margin-right: 5px;
+    }
 
 /* slider informasi */
   .carousel {
