@@ -352,8 +352,7 @@ const schule= [
   { nama: "Isya", waktu: waktu.isya }
 ];
 $(schule).each(function(i,val){
-  $('#jadwal_List').append("<li class='list-group-item  d-flex justify-content-between align-items-center  sholat-"+val.nama+"'><div class='aligned'><img src='src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/>"+"&#x20;"+"<span>"+val.nama+"</span></div><span class='badge bg-primary'>"+val.waktu+"</span></li>");
-  $("#jadwal_list").append("<li class='list-group-item sholat-"+val.nama+"' style='border: thin solid; border-color: #D3D3D3; border-bottom-left-radius: 10px; border-top-right-radius: 10px;'><div><span class='time d-block fw-bold'>"+val.waktu+" WIB</span><span class='info d-block text-muted'>"+val.nama+"</span></div><div><img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/cdfb2e5b36b2a123cd6240abd127e5e852825d7b/src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/></div></li>");
+  $("#jadwal_list").append("<li class='list-group-item sholat-"+val.nama+"' style='border: thin solid; border-color: #D3D3D3; border-bottom-left-radius: 10px; border-top-right-radius: 10px;'><div><span class='time d-block fw-bold'>"+val.waktu+" WIB</span><span class='info d-block text-muted'>"+val.nama+"</span></div><div><img src='src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/></div></li>");
 });
 
 // Mengambil teks di dalam span
@@ -363,7 +362,7 @@ let nilai = ArrayKeterangan[0];
 // alert(nilai);
 $("#JedaIqomah").html("jeda iqomah "+nilai);
 let toggleClass = ".sholat-"+nilai;
-$(toggleClass).toggleClass('list-group-item-success');
+$(toggleClass).toggleClass('active');
 
 
 // jadwal sholat dan countdown
