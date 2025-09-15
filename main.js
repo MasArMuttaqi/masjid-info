@@ -269,7 +269,7 @@ function updateCountdown() {
             const minutes = Math.floor(diff / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/hourglass.gif' width='20px'/>Menuju Iqomah " + currentPrayer.name);
+            $("#statusSholat").html("<img src='src/icon/hourglass.gif' width='20px'/>Menuju Iqomah " + currentPrayer.name);
             $("#Nextprayer").html(currentPrayer.name + 
                 " <small class='prayer-time'>" + 
                 currentPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + 
@@ -295,9 +295,9 @@ function updateCountdown() {
             const m = Math.floor(diff / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/carpet.gif' width='20px'/> Sholat " + currentPrayer.name + " berjamaah");
+            $("#statusSholat").html("<img src='src/icon/carpet.gif' width='20px'/> Sholat " + currentPrayer.name + " berjamaah");
             $("#tidak_ada_jadwal").show();
-            $("#tidak_ada_jadwal").attr("src", "https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/shalat.png");
+            $("#tidak_ada_jadwal").attr("src", "src/icon/shalat.png");
             $("#countdown").html("Sisa waktu: " + m + " menit " + s + " detik");
            return;
         }
@@ -306,7 +306,7 @@ function updateCountdown() {
         if (jamaahActive && jamaahEnd && now >= jamaahEnd) {
             jamaahActive = false;
             jamaahEnd = null;
-            $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/time.gif' width='20px'/> Menunggu waktu sholat");
+            $("#statusSholat").html("<img src='src/icon/time.gif' width='20px'/> Menunggu waktu sholat");
         }
     }
 
@@ -315,9 +315,9 @@ function updateCountdown() {
     if (!nextPrayer) {
         $("#Nextprayer").hide();
         $("#tidak_ada_jadwal").show();
-        $("#tidak_ada_jadwal").attr("src", "https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/prayer-mat_7099103.png");
+        $("#tidak_ada_jadwal").attr("src", "src/icon/prayer-mat_7099103.png");
         $("#countdown").html("0 jam 0 menit 0 detik");
-        $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/check.gif' width='20px'/> Semua sholat selesai hari ini");
+        $("#statusSholat").html("<img src='src/icon/check.gif' width='20px'/> Semua sholat selesai hari ini");
         return;
     }
 
@@ -326,7 +326,7 @@ function updateCountdown() {
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-    $("#statusSholat").html("<img src='https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/time.gif' width='20px'/> Menunggu waktu sholat");
+    $("#statusSholat").html("<img src='src/icon/time.gif' width='20px'/> Menunggu waktu sholat");
     $('#Nextprayer').html(nextPrayer.name + 
         " <small class='prayer-time'>" + 
         nextPrayer.time.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace('.', ':') + 
