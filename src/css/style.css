@@ -281,13 +281,11 @@ div.footer {
 
 .list-group-horizontal.flex-wrap > .list-group-item {
     flex: 0 0 50%; /* 2 items per row */
-    max-width: 50%;
-/*  margin: 3px 10px 5px 18px; */
+    max-width: 48%;
+    //margin: 2px;
+    margin: 4px 3px 5px 3px; 
     /* Top, Right, Bottom, Left */
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border-radius: 5px !important;
-    border: 1px solid #ebeff2;
+    border-radius: 8px;
   }
 
 .list-group-item {
