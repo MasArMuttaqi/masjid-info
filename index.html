@@ -74,7 +74,7 @@
 </div> 
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid" id="layar">
   <div class="row">
       <!-- konten -->
       <div class="col-md-8 col-sm-8" style="padding-left: 0px; padding-right: 0px;">
@@ -187,6 +187,23 @@
     var divInnerWidth = $(".slide").innerWidth();
     const Height1 = divInnerWidth / (16/9); 
     $("#Kas").width("100%").height(Height1);
+</script>
+<script type="text/javascript>
+// Assuming you have an element with the ID 'myElement'
+const myElement = document.getElementById('layar');
+
+function setAspectRatio16_9() {
+    const width = myElement.offsetWidth; // Get the current width
+    const height = (width / 16) * 9;    // Calculate the height for a 16:9 aspect ratio
+
+    myElement.style.height = `${height}px`;
+}
+
+// Call the function initially
+setAspectRatio16_9();
+
+// Call the function whenever the window is resized to maintain responsiveness
+window.addEventListener('resize', setAspectRatio16_9);
 </script>
 </body>
 </html>
