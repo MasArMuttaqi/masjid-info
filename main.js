@@ -53,7 +53,7 @@ const hijriMonthMap = {
   'محرم': 'Muharram',
   'صفر': 'Safar',
   'ربيع الأول': 'Rabiul Awal',
-  'ربيع الآخر': 'Rabiul Akhir',
+  'ربيع الثاني': 'Rabiul Akhir',
   'جمادى الأولى': 'Jumadil Awal',
   'جمادى الآخرة': 'Jumadil Akhir',
   'رجب': 'Rajab',
