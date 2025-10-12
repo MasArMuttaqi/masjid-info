@@ -351,9 +351,14 @@ const schule= [
   { nama: "Magrib", waktu: waktu.magrib },
   { nama: "Isya", waktu: waktu.isya }
 ];
+
+const iconSholat = [{"sholat":"Imsak","url":"https://maps.gstatic.com/weather/v1/mostly_cloudy_night.svg"},{"sholat":"Subuh","url":"https://maps.gstatic.com/weather/v1/cloudy.svg"},{"sholat":"Terbit","url":"https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/terbit_alt.svg"},{"sholat":"Dhuha","url":"https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/Component 8.svg"},{"sholat":"Zuhur","url":"https://maps.gstatic.com/weather/v1/sunny.svg"},{"sholat":"Asar","url":"https://maps.gstatic.com/weather/v1/mostly_cloudy.svg"},{"sholat":"Magrib","url":"https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/icon/magrib_alt.svg"},{"sholat":"Isya","url":"https://maps.gstatic.com/weather/v1/clear.svg"}];
+
 $(schule).each(function(i,val){
-  $("#jadwal_list").append("<li class='list-group-item sholat-"+val.nama+"' style='border: thin solid; border-color: #D3D3D3; border-bottom-left-radius: 10px; border-top-right-radius: 10px;'><div><span class='time d-block fw-bold'>"+val.waktu+" WIB</span><span class='info d-block text-muted'>"+val.nama+"</span></div><div><img src='src/icon/icon-"+val.nama+".svg' alt='icon-"+val.nama+"'/></div></li>");
-});
+const iconData = iconSholat.find(item => item.sholat === val.nama);
+  const iconUrl = iconData ? iconData.url : "https://via.placeholder.com/40";
+
+ $("#jadwal_List").append("<li class='list-group-item sholat-"+val.nama+"' style='border: thin solid; border-color: #D3D3D3; border-bottom-left-radius: 10px; border-top-right-radius: 10px;'><div><span class='time d-block fw-bold'>"+val.waktu+" WIB</span><span class='info d-block text-muted'>"+val.nama+"</span></div><div><img src='"+iconUrl+"' alt='icon-"+val.nama+"'/></div></li>");
 
 // Mengambil teks di dalam span
 var keterangan = $('.text-1xl').text();
