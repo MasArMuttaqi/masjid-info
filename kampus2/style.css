@@ -1,0 +1,555 @@
+body{
+      background-image: url(https://isi-ska.ac.id/wp-content/uploads/2021/08/background-isi.jpg);
+    background-size: cover;
+}
+/* Container utama yang menjaga rasio */
+  .ratio-16-9 {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    /* background-color: #f8f9fa; */
+    /* Warna dasar agar terlihat */
+    overflow: hidden; /* Agar konten tidak keluar garis */
+    position: relative;
+  }
+
+  /* Jika ingin di mobile tetap 16:9, gunakan aspect-ratio. 
+     Jika di mobile ingin tingginya bebas, gunakan media query */
+  @media (max-width: 767px) {
+    .ratio-16-9 {
+      aspect-ratio: auto; /* Melepas rasio di mobile jika konten terlalu panjang */
+      min-height: 300px; 
+    }
+  }
+  
+  .bg-col-8 { 
+  background-color: #e9ecef; 
+  min-height: 100px;
+   }
+  .bg-col-4 { 
+  /*background-color: #ced4da;*/
+   min-height: 100vh;
+  }
+  
+.info-card{ 
+      background:#fff;
+      border-radius:5px;
+      padding:5px;
+      box-shadow:0 2px 10px rgba(0,0,0,.04);
+      display:flex;
+      gap:5px;
+      align-items:flex-start;
+      width:100%;
+ }
+ 
+.glass-layer {
+  /* Efek Utama */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(3px); /* Memberikan efek buram pada objek di belakang */
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.6); /* Border tipis seperti pantulan cahaya */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+    
+.header-container {
+  /*background-color: #0d1b4d;
+  color: #ffffff; */
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: fit-content;
+  /* font-family: 'Arial', sans-serif; */
+}
+
+.logo-box img {
+  height: 40px; /* Sesuaikan ukuran logo */
+  margin-right: 10px;
+}
+
+.content-box {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.script-row {
+  /*font-size: 0.5rem; */
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.main-title {
+  font-family: "Philosopher", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 2px; 
+  /* Memberikan jarak antar huruf sesuai gambar */
+  margin: 5px 0;
+  font-weight: 800;
+  white-space: nowrap;
+  color: #9E0000;
+}
+
+.sub-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  /* text-transform: uppercase; */
+  font-size: 0.5rem;
+  white-space: nowrap;
+  /*letter-spacing: 2px; */
+  color: #333333;
+}
+.script-row .hijaiyah{
+    font-family: 'El Messiri', sans-serif;
+    color: #333333;
+    font-size: 0.5rem;
+}
+.script-row .aksara{
+      font-family: aksara;
+      color:#333333;
+      font-size: 0.6rem;
+}
+.script-row img{
+    height: 20px;
+}
+/* Garis di kiri dan kanan teks bawah */
+.sub-title::before,
+.sub-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgb(209, 39, 39);
+  background : -webkit-linear-gradient(left, #d12727 56%, #7f1900 100%);
+  max-width: 50px; /* Atur panjang garis */
+}
+
+.sub-title span {
+  padding: 0 10px;
+}
+
+    
+        .container-card {
+            width: 100%;
+            height:100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom:5px;
+        }
+
+        .custom-card {
+            width: 100%;
+            /*aspect-ratio: 16 / 9;*/
+            height: 100vh;
+            border-radius: 5px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            height: 320px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .custom-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        /* Gradasi gelap transparan */
+        .card-img-overlay {
+            background: linear-gradient(to top,rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.2) 70%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem;
+            height:100vh;
+        }
+
+        /* Tombol Glassmorphism */
+        .btn-start {  
+            font-family: 'Digital-7 Mono', sans-serif;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 12px;
+            padding: 10px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            background: rgba(255, 255, 255, 0.4);
+            color: white;
+        }
+
+        .location-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+       
+        .infobox {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      /* border-radius: 50px; */
+      border-radius: 10px 5px 5px 10px; 
+      /* top-left top-right bottom-right bottom-left */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin: 8px 0;
+      padding: 8px 10px;
+      position: relative;
+      min-height: 30px;
+    }
+    .infobox .number {
+      font-family: "Philosopher", sans-serif;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-right: 15px;
+      padding: 3px;
+      min-width: 70px;
+      text-align: center;
+      line-height: 1;
+      color: #333333;
+      
+    }
+    .infobox .number small {
+      display: block;
+      font-size: 12px;
+      font-weight: normal;
+      color: #888;
+    }
+    .infobox .icon {
+      font-size: 28px;
+      margin-right: 20px;
+      color: #444;
+    }
+    
+    .vertical-line-alt {
+      width: 1px; /* Line thickness */
+      background-color: #888; /* Line color */
+      min-height: 28px; /* Line height */
+  /* Optional: Positioning and alignment */
+      margin-right: 10px;
+      margin-left:10px;
+  
+    }
+    .infobox .content h5 {
+          font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin: 0;
+    }
+    .infobox .content p {
+      margin: 0;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 600;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    /* Warna sisi kanan */
+    .infobox::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 5px;
+      border-radius: 0 15px 15px 0;
+    }
+    .yellow::after { background: #ffc107; }
+    .blue::after { background: #6c8bc7; }
+    .green::after { background: #4caf50; }
+    .cyan::after { background: #26c6da; }
+    .darkblue::after { background: #1976d2; }
+    .gradient::after{ background: linear-gradient(to top, #d12727 56%, #7f1900 100%); }
+    
+    .time{
+        font-family: 'Digital-7 Mono', sans-serif;
+        font-size:1.5rem;
+        letter-spacing:0.1ch;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1;
+        /*font-size: clamp(26pt, 10vw, 26pt);*/
+        line-height: 1;
+        position: relative;
+        z-index: 999;
+    }
+
+   /* .clock.hour::before{
+        font-family: 'Digital-7 Mono', sans-serif;
+        font-size:1.5rem;
+        letter-spacing:0.1ch;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1;
+        content: "88:88";
+        color: #bfbfbf;
+        opacity: 0.5;
+        position: fixed;
+        right: 20px;
+        top: 52px;
+        z-index: -1;
+    } */
+    
+    .prayer-tile{
+      /*background: #fafafa;*/
+      color:#fafafa;
+      border-radius:10px;
+      padding:0.85rem;
+      margin:0.1rem;
+      /*height:80%; */
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:.3rem;
+      row-gap:.1rem;
+      transition:.2s ease;
+      /*border: thin solid; 
+      border-color: #D3D3D3;*/
+    }
+    
+    .prayer-tile:hover{ 
+    transform:translateY(-2px);
+    }
+
+    .prayer-time{
+      font-weight:800;
+      font-size:0.85rem;
+      line-height:1;
+    }
+    .prayer-name{
+      color:#FFFFFF;
+      font-weight:500;
+      font-size: 0.85rem;
+      display:flex;
+      align-items:center;
+      /*gap:.5rem;*/
+      line-height: 1;
+      justify-content: space-between;
+    }
+    .prayer-name img{ 
+      float: right;
+      vertical-align: middle;
+      width: 15%;
+      aspect-ratio: 1 / 1;
+    }
+
+    /* aktif (Subuh pada contoh) */
+    .prayer-tile.active{
+      background-image: linear-gradient(135deg, #1b3a7c, #1d8757);
+      color:#FFF;
+      cursor: pointer;
+      box-shadow: 0 0 0 rgba(31,179, 11, 0.4);
+      animation: pulse 2s infinite;
+      border:none !important;
+    }
+   
+.pulse:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(31,179, 11, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(31,179, 11, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(31,179, 11, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(31,179, 11, 0.4);
+    box-shadow: 0 0 0 0 rgba(31,179, 11, 0.4);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 10px rgba(31,179, 11, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(31,179, 11, 0);
+      box-shadow: 0 0 0 0 rgba(31,179, 11, 0);
+  }
+}
+    .prayer-tile.active .prayer-name{
+      color:#FFF;
+    }
+    
+       .container .container-carousel{
+            width:100% !important;
+        }
+      /* Custom Styling untuk Indikator sesuai Gambar */
+     .carousel-indicators {
+            bottom: 5px; /* Letakkan di bawah card */
+        }
+
+      .carousel-indicators [data-bs-target] {
+            width: 30px; /* Panjang garis abu-abu */
+            height: 6px;
+            border-radius: 10px;
+            background-color: #e0e0e0; /* War8na dasar */
+            border: none;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+      .carousel-indicators .active {
+            width: 60px; /* Lebih panjang saat aktif */
+            background-color: #1b3a7c; /* Warna biru aktif */
+        }
+
+
+  
+  .news-heading-container {
+    margin-bottom: 20px;
+    font-family: "Philosopher", sans-serif;    
+  }
+
+  .news-heading {
+    color: #333333; /* Warna biru tua sesuai gambar */
+    font-weight: 600;
+    font-size: 1rem;
+    /* text-transform: uppercase; */
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    display: block;
+  }
+  .news-heading span{
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight:300;
+  }
+
+  .news-line {
+    width: 100%;
+    height: 4px; /* Ketebalan garis kuning tipis */
+    /*background-color: #f2b138; */
+    background: linear-gradient(90deg, #1b3a7c, #1d8757);
+    /* Warna kuning emas sesuai gambar */
+    position: relative;
+  }
+
+  /* Bagian garis yang lebih tebal di awal */
+  .news-line::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -4px; /* Menumpuk sedikit ke atas agar terlihat menyatu */
+    width: 60px; /* Panjang garis tebal */
+    height: 6px;  /* Ketebalan garis utama */
+    background-color: #1b3a7c;
+  }
+
+
+  .nm-ws-footer {
+      /*background: #fafafa; */
+      text-align: center;
+      font-size: 11px;
+      color: #FFFFFF;
+     /* border-top: 1px solid #eee; */
+  }
+
+  .nm-ws-footer a {
+    color: #ccc;
+    text-decoration: none;
+    border-bottom: 1px dotted #777;
+  }
+
+.weather-container {
+    position: relative;
+    max-width: 450px;
+    margin: 0 auto;
+    max-height: 100vh;
+    overflow: hidden;
+    border-radius: 15px; /* Opsional: agar sudut melengkung seperti HP */
+    
+    /* TRICK UTAMA: Menggabungkan gambar dan gradien dalam satu tumpukan */
+    /* Layer 1 (Paling Atas): Gradasi Biru ke Transparan (untuk menutupi bagian bawah gambar) */
+    /* Layer 2 (Paling Bawah): Gambar Background */
+    background: 
+        linear-gradient(to bottom, 
+            rgba(0, 118, 190, 0) 0%, 
+            rgba(0, 118, 190, 0) 30%, 
+            rgba(0, 118, 190, 0.4) 50%, 
+            rgba(0, 118, 190, 0.8) 70%, 
+            rgba(0, 118, 190, 1) 90%,
+            #1e64aa 100%
+        ),
+        url('https://raw.githubusercontent.com/MasArMuttaqi/masjid-info/refs/heads/main/src/img/1759673117167.jpg');
+    
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: local; /* Menjaga gradien tetap sinkron saat scroll */
+    background-color: #1e64aa; /* Warna fallback untuk bagian paling bawah */
+}
+
+/* Hilangkan class .bg-image-wrapper dan .gradient-overlay di HTML 
+   karena sudah digabung di .weather-container di atas */
+
+.content-overlay {
+    position: relative;
+    z-index: 10;
+    /* Memberikan ruang agar konten tidak menempel ke pinggir */
+    padding: 15px;
+}
+
+/* Kartu Jadwal Shalat */
+.glass-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    margin-bottom: 6px;
+}
+.countdown{
+    font-family: 'Digital-7 Mono', sans-serif;
+        letter-spacing:0.1ch;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1;
+        color: #fafafa;
+        margin:5px;
+        font-weight: 800;
+}
+
+.profile-wrapper {
+    display: flex;          /* Membuat elemen sejajar */
+    align-items: center;    /* Vertikal rata tengah */
+    gap: 5px;              /* Memberi jarak antara gambar dan teks */
+    margin: 5px;
+}
+
+       .profile-img {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            object-fit: contain;
+            margin: 5px;
+            
+        }
+        
+        .profile-img img{
+            width: 20px;
+            height: 20px;
+            /*transform: scale(1.2);*/
+            object-fit: contain;
+        }
