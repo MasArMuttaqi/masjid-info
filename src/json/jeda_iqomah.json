@@ -1,0 +1,27 @@
+[
+  {
+    "jeda_iqomah": "Subuh",
+    "menit": "15",
+    "jamaah": "16"
+  },
+  {
+    "jeda_iqomah": "Zuhur",
+    "menit": "20",
+    "jamaah": "10"
+  },
+  {
+    "jeda_iqomah": "Asar",
+    "menit": "15",
+    "jamaah": "15"
+  },
+  {
+    "jeda_iqomah": "Magrib",
+    "menit": "20",
+    "jamaah": "16"
+  },
+  {
+    "jeda_iqomah": "Isya",
+    "menit": "10",
+    "jamaah": "15"
+  }
+]
